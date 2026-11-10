@@ -1,0 +1,2961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalyan Shoe Mart | Official Footwear Store</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              yellow: '#F4E11B',       /* Reference Bright Yellow */
+              yellowHover: '#DFCC0D',
+              yellowLight: '#FEF9C3',
+              yellowSurface: '#FEFCE8',
+              blue: '#0035AD',         /* Reference Royal Blue */
+              blueDark: '#00257A',
+              blueLight: '#EEF4FF',
+              blueSurface: '#E0EBFF',
+              dark: '#111827',
+              slate: '#F8F9FA',
+              border: '#E5E7EB',
+              muted: '#6B7280'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          },
+          boxShadow: {
+            'soft': '0 8px 30px rgba(0, 0, 0, 0.05)',
+            'yellow-glow': '0 12px 35px -5px rgba(244, 225, 27, 0.5)',
+            'blue-glow': '0 12px 35px -5px rgba(0, 53, 173, 0.35)',
+            'card-lift': '0 14px 28px rgba(0, 53, 173, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+    
+    /* Dynamic Abstract Brand Mesh & Patterns */
+    .brand-pattern-bg {
+      background-color: #0b1a4a;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(244, 225, 27, 0.18) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(0, 53, 173, 0.45) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(244, 225, 27, 0.12) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(0, 37, 122, 0.6) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(13, 27, 74, 0.8) 0px, transparent 70%);
+      background-attachment: fixed;
+    }
+
+    .admin-pattern-bg {
+      background-color: #0a1740;
+      background-image: 
+        radial-gradient(rgba(244, 225, 27, 0.12) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+      background-size: 36px 36px, 18px 18px;
+      background-position: 0 0, 9px 9px;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .glass-panel-dark {
+      background: rgba(13, 27, 74, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(244, 225, 27, 0.25);
+    }
+
+    .abstract-mesh-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .abstract-mesh-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(244, 225, 27, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .blob-bg {
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      transition: all 0.5s ease-in-out;
+    }
+    .blob-bg:hover {
+      border-radius: 58% 42% 38% 62% / 55% 50% 50% 45%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #00257A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #F4E11B;
+      border-radius: 9999px;
+    }
+
+    .badge-yellow {
+      background-color: #FEF9C3;
+      color: #854D0E;
+      border: 1px solid #F4E11B;
+    }
+    .badge-blue {
+      background-color: #0035AD;
+      color: #FFFFFF;
+    }
+    .badge-sale {
+      background-color: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.08) rotate(-2deg);
+    }
+    .product-img {
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  </style>
+</head>
+<body class="brand-pattern-bg text-[#111827] antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+
+  <!-- Subtle Ambient SVG Graphic Assets in Background -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30 select-none">
+    <!-- Geometric Rings & Outlines -->
+    <svg class="absolute -top-24 -left-24 w-96 h-96 text-[#F4E11B]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.8">
+      <circle cx="100" cy="100" r="90" stroke-dasharray="8 8"/>
+      <circle cx="100" cy="100" r="70"/>
+      <circle cx="100" cy="100" r="50" stroke-dasharray="4 4"/>
+    </svg>
+
+    <svg class="absolute top-1/3 -right-32 w-[520px] h-[520px] text-[#0035AD]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.7">
+      <path d="M20,100 Q60,20 100,100 T180,100" />
+      <path d="M20,130 Q60,50 100,130 T180,130" stroke-dasharray="6 6" />
+      <circle cx="100" cy="100" r="85" />
+    </svg>
+
+    <svg class="absolute -bottom-20 left-1/4 w-[420px] h-[420px] text-[#F4E11B]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.6">
+      <polygon points="100,10 190,190 10,190" stroke-dasharray="5 5" />
+      <circle cx="100" cy="120" r="45" />
+    </svg>
+  </div>
+
+  <!-- ================= TOP NOTIFICATION / PROMO BANNER ================= -->
+  <!-- Pure customer announcement - NO ADMIN BUTTONS -->
+  <div id="promo-banner" class="bg-[#0035AD]/95 backdrop-blur-md text-white py-2.5 px-4 text-xs sm:text-sm font-semibold flex items-center justify-between border-b border-[#F4E11B]/30 relative z-20">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <div class="flex items-center space-x-2 truncate">
+        <span class="inline-flex items-center justify-center px-2.5 py-0.5 rounded-full text-[11px] font-black bg-[#F4E11B] text-[#0035AD] uppercase tracking-wider shadow-sm">LIMITED DEAL</span>
+        <span id="promo-text" class="truncate font-medium">Use code <strong class="text-[#F4E11B] font-bold underline">KALYAN20</strong> for Flat 20% Off + Free In-Store Pickup!</span>
+      </div>
+      <div class="flex items-center space-x-4 pl-4 shrink-0 text-xs text-yellow-200">
+        <span class="hidden sm:inline">⚡ Kalyan West Flagship Store Open Today till 9:30 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ======================== PORTAL 1: STOREFRONT ========================== -->
+  <!-- ========================================================================= -->
+  <div id="storefront-portal" class="portal-view flex-1 flex flex-col relative z-10">
+    
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-lg border-b border-gray-200/80 shadow-md transition-all">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Brand Logo with Royal Blue & Bright Yellow Badge -->
+        <a href="#home" onclick="resetFilter()" class="flex items-center space-x-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-[#0035AD] flex items-center justify-center text-[#F4E11B] shadow-blue-glow group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 13h6l3-5 5 10h3"/>
+              <path d="M2 17h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/>
+              <path d="M16 11l2-4"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-extrabold tracking-tight text-[#0035AD] block leading-tight font-display">Kalyan Shoe Mart</span>
+            <span class="text-[10px] uppercase font-bold tracking-widest text-gray-500">Premium Footwear & Athletic</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-gray-700">
+          <a href="#home" onclick="resetFilter()" class="text-[#0035AD] font-bold hover:text-[#00257A] transition-colors">Home</a>
+          <a href="#shop" onclick="resetFilter()" class="hover:text-[#0035AD] transition-colors">Shop All</a>
+          <a href="#categories" class="hover:text-[#0035AD] transition-colors">Categories</a>
+          <a href="#offers" class="hover:text-[#0035AD] transition-colors">Offers</a>
+          <a href="#about" class="hover:text-[#0035AD] transition-colors">About Us</a>
+          <a href="#contact" class="hover:text-[#0035AD] transition-colors">Store Locator</a>
+        </nav>
+
+        <!-- Right Action Items -->
+        <div class="flex items-center space-x-3">
+          <!-- Search input -->
+          <div class="relative hidden sm:block">
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search sneakers, boots..." 
+                   class="pl-9 pr-4 py-2 w-48 lg:w-64 text-xs font-medium bg-[#F3F4F6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#0035AD] focus:bg-white transition-all border border-transparent focus:border-gray-200">
+            <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+          </div>
+
+          <!-- Customer reservation tracker button -->
+          <button onclick="openBookingLookupModal()" title="Track My Order / In-Store Hold" class="p-2.5 rounded-full text-gray-700 hover:text-[#0035AD] hover:bg-gray-100 transition-colors">
+            <i data-lucide="user-check" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Cart Drawer Button -->
+          <button onclick="toggleCartDrawer(true)" class="relative flex items-center space-x-2 bg-[#0035AD] hover:bg-[#00257A] text-white px-4 py-2.5 rounded-full transition-all shadow-md group">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-[#F4E11B] group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-bold font-sans">Cart</span>
+            <span id="cart-badge-count" class="bg-[#F4E11B] text-[#0035AD] font-extrabold text-[11px] w-5 h-5 rounded-full flex items-center justify-center -ml-1">0</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button onclick="toggleMobileNav()" class="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile dropdown nav -->
+      <div id="mobile-nav" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-5 space-y-2">
+        <input type="text" oninput="handleSearch(this.value)" placeholder="Search footwear..." class="w-full mb-3 pl-9 pr-4 py-2 text-xs bg-gray-100 rounded-full border border-gray-200">
+        <a href="#home" onclick="toggleMobileNav()" class="block py-2 text-sm font-semibold text-gray-800">Home</a>
+        <a href="#shop" onclick="toggleMobileNav()" class="block py-2 text-sm font-semibold text-gray-800">Shop Collection</a>
+        <a href="#categories" onclick="toggleMobileNav()" class="block py-2 text-sm font-semibold text-gray-800">Browse Categories</a>
+        <a href="#offers" onclick="toggleMobileNav()" class="block py-2 text-sm font-semibold text-gray-800">Special Offers</a>
+        <a href="#about" onclick="toggleMobileNav()" class="block py-2 text-sm font-semibold text-gray-800">About Kalyan Mart</a>
+      </div>
+    </header>
+
+    <!-- Hero Section with Bright Yellow & Royal Blue Contrast -->
+    <section id="home" class="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-6 space-y-6 text-center lg:text-left z-10">
+            <div class="inline-flex items-center space-x-2 bg-[#FEF9C3]/90 border border-[#F4E11B] px-4 py-1.5 rounded-full text-xs font-bold text-[#854D0E] tracking-wide uppercase shadow-md backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-[#0035AD] animate-ping"></span>
+              <span>New Arrival Collection '27</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] font-display drop-shadow-sm">
+              Comfort Meets Style <br class="hidden sm:block" />
+              <span class="relative inline-block mt-1">
+                <span class="relative z-10 text-[#F4E11B]">Every Step</span>
+                <span class="absolute bottom-1 left-0 w-full h-4 bg-[#0035AD] -z-0 rounded-sm transform -rotate-1 opacity-90 border-b border-[#F4E11B]"></span>
+              </span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-blue-100 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              Premium footwear engineered for superior arch support, all-day comfort, athletic durability, and bold modern street style.
+            </p>
+
+            <!-- Buttons: Bright Yellow & Royal Blue -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#shop" class="w-full sm:w-auto px-8 py-4 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] font-extrabold rounded-full text-sm shadow-yellow-glow hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-3 group">
+                <span>Shop Collection</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-[#0035AD] group-hover:translate-x-1 transition-transform"></i>
+              </a>
+              <button onclick="openStoreReserveInfo()" class="w-full sm:w-auto px-7 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-extrabold rounded-full text-sm transition-all flex items-center justify-center space-x-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-[#F4E11B]"></i>
+                <span>Reserve in Store (Free)</span>
+              </button>
+            </div>
+
+            <!-- Mini Metrics -->
+            <div class="pt-6 border-t border-white/15 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 text-left">
+              <div>
+                <div class="text-2xl font-black text-[#F4E11B] font-display">40K+</div>
+                <div class="text-xs text-blue-200 font-medium">Happy Feet</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-[#F4E11B] font-display">4.9 ★</div>
+                <div class="text-xs text-blue-200 font-medium">Customer Rating</div>
+              </div>
+              <div>
+                <div class="text-2xl font-black text-[#F4E11B] font-display">100%</div>
+                <div class="text-xs text-blue-200 font-medium">Original Fit</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual with Organic Curved Bright Yellow Backdrop -->
+          <div class="lg:col-span-6 relative flex items-center justify-center">
+            <!-- Organic Bright Yellow Backdrop Shape -->
+            <div class="absolute w-[320px] h-[320px] sm:w-[460px] sm:h-[460px] bg-[#F4E11B] blob-bg shadow-yellow-glow opacity-90 -z-0"></div>
+            
+            <!-- Secondary Playful Badge Tag -->
+            <div class="absolute top-4 right-4 sm:top-8 sm:right-8 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-gray-100 flex items-center space-x-3 z-20 animate-bounce duration-1000">
+              <span class="p-1.5 rounded-full bg-[#0035AD] text-[#F4E11B]">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+              </span>
+              <div>
+                <p class="text-xs font-black text-[#0035AD] leading-none">Better Shoes</p>
+                <p class="text-[10px] text-gray-500 font-medium">Brighter Days 👟</p>
+              </div>
+            </div>
+
+            <!-- Hero Sneaker Image -->
+            <div class="relative z-10 w-full max-w-[480px] p-4 group">
+              <img id="heroSneakerImg" src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=900&q=80" 
+                   alt="Kalyan High-top Sneaker" 
+                   class="w-full h-auto object-contain drop-shadow-2xl transform -rotate-12 group-hover:rotate-0 transition-transform duration-700 ease-out select-none">
+              
+              <!-- Floating Price Pill on Hero -->
+              <div class="absolute -bottom-2 left-6 sm:left-12 bg-[#0035AD] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 border-2 border-[#F4E11B]">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#F4E11B] animate-pulse"></div>
+                <div>
+                  <div class="text-[10px] text-yellow-200 uppercase tracking-widest font-bold">Featured Launch</div>
+                  <div class="text-sm font-extrabold text-white">Velocity Lime X1 • <span class="text-[#F4E11B]">₹2,499</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Badges Bar -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 pt-10 border-t border-white/15">
+          <div class="flex items-center space-x-4 glass-panel p-5 rounded-2xl border border-white/40 shadow-card-lift hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-[#0035AD] text-[#F4E11B] flex items-center justify-center shrink-0 shadow-md">
+              <i data-lucide="truck" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-900">Free Express Shipping</h4>
+              <p class="text-xs text-gray-600 font-medium mt-0.5">Pan-India delivery straight to your doorstep</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 glass-panel p-5 rounded-2xl border border-white/40 shadow-card-lift hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-[#0035AD] text-[#F4E11B] flex items-center justify-center shrink-0 shadow-md">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-900">Secure Payment (100% Safe)</h4>
+              <p class="text-xs text-gray-600 font-medium mt-0.5">Encrypted UPI, Cards, Netbanking & Store COD</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4 glass-panel p-5 rounded-2xl border border-white/40 shadow-card-lift hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-[#0035AD] text-[#F4E11B] flex items-center justify-center shrink-0 shadow-md">
+              <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-900">Easy Returns Within 7 Days</h4>
+              <p class="text-xs text-gray-600 font-medium mt-0.5">Hassle-free size exchanges at home or nearby mart</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SHOP BY CATEGORY ================= -->
+    <section id="categories" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+          <div>
+            <span class="text-xs font-bold text-[#F4E11B] uppercase tracking-wider">Collections</span>
+            <h2 class="text-3xl font-extrabold text-white font-display mt-1">Shop by Category</h2>
+          </div>
+          <p class="text-sm text-blue-200 mt-2 sm:mt-0 font-medium">Explore hand-picked footwear styles suited for every occasion</p>
+        </div>
+
+        <!-- Category Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="categoryGrid">
+          <!-- Filled dynamically via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FEATURED PRODUCTS GRID ================= -->
+    <section id="shop" class="py-16 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#F4E11B] uppercase tracking-wider mb-1">
+              <span>Curated Selection</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white font-display">Featured Footwear</h2>
+          </div>
+
+          <!-- Category filter pills -->
+          <div class="flex items-center overflow-x-auto pb-2 gap-2 text-xs font-bold" id="filterPills">
+            <button onclick="filterCategory('All')" class="category-btn active px-4 py-2 rounded-full bg-[#F4E11B] text-[#0035AD] hover:bg-yellow-300 transition-colors whitespace-nowrap shadow-sm">All Footwear</button>
+            <button onclick="filterCategory('Sneakers')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Sneakers</button>
+            <button onclick="filterCategory('Running')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Running</button>
+            <button onclick="filterCategory('Casual')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Casual</button>
+            <button onclick="filterCategory('Boots')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Boots</button>
+            <button onclick="filterCategory('Sandals')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Sandals</button>
+            <button onclick="filterCategory('Formals')" class="category-btn px-4 py-2 rounded-full bg-white/90 text-gray-800 hover:bg-white border border-transparent transition-colors whitespace-nowrap">Formals</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SHOP BY CATEGORY ================= -->
+    <section id="categories" class="py-16 bg-white border-t border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+          <div>
+            <span class="text-xs font-bold text-[#0035AD] uppercase tracking-wider">Collections</span>
+            <h2 class="text-3xl font-extrabold text-gray-900 font-display mt-1">Shop by Category</h2>
+          </div>
+          <p class="text-sm text-gray-500 mt-2 sm:mt-0 font-medium">Explore hand-picked footwear styles suited for every occasion</p>
+        </div>
+
+        <!-- Category Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6" id="categoryGrid">
+          <!-- Filled dynamically via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= FEATURED PRODUCTS GRID ================= -->
+    <section id="shop" class="py-16 bg-[#F8F9FA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#0035AD] uppercase tracking-wider mb-1">
+              <span>Curated Selection</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 font-display">Featured Footwear</h2>
+          </div>
+
+          <!-- Category filter pills -->
+          <div class="flex items-center overflow-x-auto pb-2 gap-2 text-xs font-bold" id="filterPills">
+            <button onclick="filterCategory('All')" class="category-btn active px-4 py-2 rounded-full bg-[#0035AD] text-white hover:bg-[#00257A] transition-colors whitespace-nowrap">All Footwear</button>
+            <button onclick="filterCategory('Sneakers')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Sneakers</button>
+            <button onclick="filterCategory('Running')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Running</button>
+            <button onclick="filterCategory('Casual')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Casual</button>
+            <button onclick="filterCategory('Boots')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Boots</button>
+            <button onclick="filterCategory('Sandals')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Sandals</button>
+            <button onclick="filterCategory('Formals')" class="category-btn px-4 py-2 rounded-full bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 transition-colors whitespace-nowrap">Formals</button>
+          </div>
+        </div>
+
+        <!-- Active Search or Filter Notice -->
+        <div id="filterNotice" class="hidden mb-6 flex items-center justify-between bg-[#FEF9C3] border border-[#F4E11B] px-4 py-2 rounded-xl text-xs font-semibold text-[#854D0E]">
+          <span id="filterNoticeText">Filtering items...</span>
+          <button onclick="resetFilter()" class="text-xs underline text-[#0035AD] font-bold">Clear Filter</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptySearch" class="hidden py-16 text-center">
+          <div class="w-16 h-16 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3">
+            <i data-lucide="search-x" class="w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900">No Shoes Found</h3>
+          <p class="text-xs text-gray-500 mt-1">Try searching with a different keyword or resetting your filter.</p>
+          <button onclick="resetFilter()" class="mt-4 px-5 py-2 text-xs font-bold bg-[#0035AD] text-white rounded-full">Show All Shoes</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PROMOTIONAL BANNER SECTION ================= -->
+    <section id="offers" class="py-14 bg-white border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative rounded-3xl overflow-hidden bg-[#0035AD] text-white p-8 sm:p-12 lg:p-16 shadow-blue-glow">
+          <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-[#F4E11B] rounded-full blur-3xl opacity-25 pointer-events-none"></div>
+          
+          <div class="relative z-10 max-w-2xl space-y-4">
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-extrabold bg-[#F4E11B] text-[#0035AD] uppercase tracking-wider">Store Exclusive</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold font-display leading-tight">Walk-In & Try Your Fit in Person at Kalyan Shoe Mart</h2>
+            <p class="text-blue-100 text-sm leading-relaxed font-normal">
+              Not sure about your size? Use our <strong class="text-[#F4E11B]">"Book / Reserve in Store"</strong> feature. Reserve your preferred pair online for free, walk into our store within 48 hours, try them on, and pay only if you love the fit!
+            </p>
+            <div class="pt-4 flex flex-wrap items-center gap-4">
+              <button onclick="filterCategory('All'); document.getElementById('shop').scrollIntoView();" class="px-7 py-3 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] font-extrabold rounded-full text-xs shadow-md transition-all">
+                Explore Footwear To Reserve
+              </button>
+              <div class="text-xs text-blue-200 flex items-center space-x-2">
+                <i data-lucide="check" class="w-4 h-4 text-[#F4E11B]"></i>
+                <span>Zero Advance Deposit Required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="about" class="bg-white border-t border-gray-200 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          <div class="space-y-4 md:col-span-1">
+            <div class="flex items-center space-x-2">
+              <div class="w-8 h-8 rounded-xl bg-[#0035AD] text-[#F4E11B] flex items-center justify-center font-bold">
+                K
+              </div>
+              <span class="text-lg font-extrabold font-display text-[#0035AD]">Kalyan Shoe Mart</span>
+            </div>
+            <p class="text-xs text-gray-500 leading-relaxed font-medium">
+              Your neighborhood flagship footwear retailer since 1998. Bringing top athletic sneakers, everyday casuals, and formal shoes to your wardrobe.
+            </p>
+            <div class="flex items-center space-x-3 text-gray-400">
+              <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0035AD] hover:text-[#F4E11B] transition-colors cursor-pointer"><i data-lucide="instagram" class="w-4 h-4"></i></span>
+              <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0035AD] hover:text-[#F4E11B] transition-colors cursor-pointer"><i data-lucide="facebook" class="w-4 h-4"></i></span>
+              <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#0035AD] hover:text-[#F4E11B] transition-colors cursor-pointer"><i data-lucide="phone" class="w-4 h-4"></i></span>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-4">Quick Links</h4>
+            <ul class="space-y-2 text-xs font-medium text-gray-600">
+              <li><a href="#shop" class="hover:text-[#0035AD]">All Men's Shoes</a></li>
+              <li><a href="#shop" class="hover:text-[#0035AD]">Women's Collection</a></li>
+              <li><a href="#shop" class="hover:text-[#0035AD]">Sports & Running</a></li>
+              <li><a href="#shop" class="hover:text-[#0035AD]">Formal Leather</a></li>
+              <li><a href="#shop" class="hover:text-[#0035AD]">Sale & Clearance</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-4">Customer Care</h4>
+            <ul class="space-y-2 text-xs font-medium text-gray-600">
+              <li><a href="javascript:void(0)" onclick="openStoreReserveInfo()" class="hover:text-[#0035AD]">Store Reservation Guide</a></li>
+              <li><a href="javascript:void(0)" onclick="openBookingLookupModal()" class="hover:text-[#0035AD]">Order & Booking Lookup</a></li>
+              <li><a href="javascript:void(0)" class="hover:text-[#0035AD]">7-Day Size Exchange</a></li>
+              <li><a href="javascript:void(0)" class="hover:text-[#0035AD]">Shoe Care Instructions</a></li>
+              <li><a href="javascript:void(0)" class="hover:text-[#0035AD]">Terms & Guarantee</a></li>
+            </ul>
+          </div>
+
+          <div id="contact">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-gray-900 mb-4">Visit Our Main Store</h4>
+            <p class="text-xs text-gray-600 leading-relaxed font-medium">
+              <strong>Kalyan Shoe Mart Flagship</strong><br>
+              Shop #14-18, Station Road, Market Plaza,<br>
+              Near City Center, Kalyan (West) - 421301.<br>
+              <span class="block mt-2 font-semibold text-gray-900">Open Daily: 10:00 AM – 9:30 PM</span>
+              <span class="block text-gray-500">Contact: +91 98765 43210</span>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+          <p>© 2027 Kalyan Shoe Mart. All rights reserved. Handcrafted with precision & comfort.</p>
+          <!-- Discreet Staff Access trigger via small lock dot without looking like an admin button -->
+          <div class="mt-3 sm:mt-0 flex items-center space-x-2">
+            <button onclick="openAdminAuthModal()" title="Staff Portal" class="text-gray-300 hover:text-gray-500 transition-colors">
+              <i data-lucide="lock" class="w-3 h-3"></i>
+            </button>
+            <span class="w-2 h-2 rounded-full bg-[#0035AD]"></span>
+            <span class="font-semibold text-gray-700">Flagship Counter Connected</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- ======================== PORTAL 2: ADMIN DASHBOARD ===================== -->
+  <!-- ========================================================================= -->
+  <!-- Completely standalone management portal with themed abstract background & patterns -->
+  <div id="admin-portal" class="portal-view hidden flex-1 flex flex-col md:flex-row admin-pattern-bg min-h-screen relative text-slate-100">
+    
+    <!-- Admin Sidebar Navigation with Royal Blue Theme & Abstract Styling -->
+    <aside class="w-full md:w-64 bg-[#001d5c]/95 backdrop-blur-xl border-r border-[#F4E11B]/20 text-white flex flex-col shrink-0 shadow-2xl relative z-20">
+      
+      <!-- Admin Brand -->
+      <div class="h-20 flex items-center px-6 border-b border-blue-900/60 justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#F4E11B] text-[#0035AD] font-extrabold flex items-center justify-center text-sm shadow-md">
+            K
+          </div>
+          <div>
+            <h2 class="text-sm font-extrabold tracking-tight text-white font-display">Kalyan Admin</h2>
+            <span class="text-[10px] text-[#F4E11B] font-semibold tracking-wider uppercase">Management Portal</span>
+          </div>
+        </div>
+        <button onclick="exitAdminPortal()" title="Exit to Customer Storefront" class="text-blue-200 hover:text-white p-1">
+          <i data-lucide="log-out" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto" id="adminSidebarNav">
+        <button onclick="switchAdminTab('dashboard')" id="tabBtn-dashboard" class="admin-nav-item active w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all bg-[#F4E11B] text-[#0035AD] shadow-md">
+          <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+          <span>Dashboard Overview</span>
+        </button>
+
+        <button onclick="switchAdminTab('products')" id="tabBtn-products" class="admin-nav-item w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all text-blue-100 hover:text-white hover:bg-[#0035AD]">
+          <i data-lucide="package" class="w-4 h-4"></i>
+          <span>Product Inventory</span>
+          <span id="admin-product-count-badge" class="ml-auto text-[10px] bg-[#001D5C] text-yellow-300 px-2 py-0.5 rounded-full font-mono">0</span>
+        </button>
+
+        <button onclick="switchAdminTab('orders')" id="tabBtn-orders" class="admin-nav-item w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all text-blue-100 hover:text-white hover:bg-[#0035AD]">
+          <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+          <span>Orders & Bookings</span>
+          <span id="admin-order-count-badge" class="ml-auto text-[10px] bg-[#F4E11B] text-[#0035AD] px-2 py-0.5 rounded-full font-mono font-bold">0</span>
+        </button>
+
+        <button onclick="switchAdminTab('offers')" id="tabBtn-offers" class="admin-nav-item w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all text-blue-100 hover:text-white hover:bg-[#0035AD]">
+          <i data-lucide="tag" class="w-4 h-4"></i>
+          <span>Discounts & Offers</span>
+        </button>
+
+        <button onclick="switchAdminTab('customers')" id="tabBtn-customers" class="admin-nav-item w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all text-blue-100 hover:text-white hover:bg-[#0035AD]">
+          <i data-lucide="users" class="w-4 h-4"></i>
+          <span>Customer CRM</span>
+        </button>
+
+        <button onclick="switchAdminTab('settings')" id="tabBtn-settings" class="admin-nav-item w-full flex items-center space-x-3 px-4 py-3 text-xs font-bold rounded-xl transition-all text-blue-100 hover:text-white hover:bg-[#0035AD]">
+          <i data-lucide="sliders" class="w-4 h-4"></i>
+          <span>Store Settings</span>
+        </button>
+      </nav>
+
+      <!-- Bottom User Card -->
+      <div class="p-4 border-t border-blue-900/60">
+        <div class="bg-[#00143d] rounded-2xl p-3 flex items-center justify-between border border-blue-800/40">
+          <div class="flex items-center space-x-3 truncate">
+            <div class="w-8 h-8 rounded-full bg-[#F4E11B] text-[#0035AD] font-extrabold flex items-center justify-center text-xs">
+              KM
+            </div>
+            <div class="truncate">
+              <p class="text-xs font-bold text-white truncate">Staff Manager</p>
+              <p class="text-[10px] text-blue-200">Kalyan West Flagship</p>
+            </div>
+          </div>
+          <button onclick="exitAdminPortal()" title="Exit Admin Portal" class="p-2 rounded-xl text-blue-200 hover:text-[#F4E11B] hover:bg-[#00257A] transition-colors">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Admin Content Area -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto relative z-10">
+      
+      <!-- Admin Header Bar -->
+      <header class="h-20 bg-[#001a52]/90 backdrop-blur-xl border-b border-[#F4E11B]/20 px-6 sm:px-8 flex items-center justify-between shrink-0 shadow-md">
+        <div>
+          <h1 id="adminSectionTitle" class="text-xl font-extrabold text-[#F4E11B] font-display">Dashboard Overview</h1>
+          <p id="adminSectionSubtitle" class="text-xs text-blue-200 font-medium">Real-time metrics, product stock updates & reservations</p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="openAddProductModal()" class="flex items-center space-x-2 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] px-4 py-2 rounded-full text-xs font-black shadow-md transition-all">
+            <i data-lucide="camera" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Add Product + Camera</span>
+          </button>
+          <button onclick="exitAdminPortal()" class="flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-4 py-2 rounded-full text-xs font-bold transition-all">
+            <i data-lucide="external-link" class="w-4 h-4 text-[#F4E11B]"></i>
+            <span class="hidden sm:inline">View Storefront</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Tab Content Views -->
+      <div class="p-6 sm:p-8 space-y-8 flex-1">
+        
+        <!-- ================= TAB 1: DASHBOARD ================= -->
+        <div id="adminTab-dashboard" class="admin-tab-content space-y-8">
+          
+          <!-- Key Metrics Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            
+            <div class="glass-panel p-5 rounded-2xl shadow-card-lift flex items-center space-x-4 border border-white/60">
+              <div class="w-12 h-12 rounded-xl bg-[#0035AD] text-[#F4E11B] flex items-center justify-center shadow-md">
+                <i data-lucide="indian-rupee" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-gray-500">Gross Sales Volume</span>
+                <h3 id="statTotalSales" class="text-2xl font-black text-gray-900 font-display mt-0.5">₹1,48,250</h3>
+                <span class="text-[10px] text-emerald-600 font-bold flex items-center mt-0.5">↑ +18.4% this week</span>
+              </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl shadow-card-lift flex items-center space-x-4 border border-white/60">
+              <div class="w-12 h-12 rounded-xl bg-[#F4E11B] text-[#0035AD] flex items-center justify-center shadow-md">
+                <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-gray-500">Active Bookings/Orders</span>
+                <h3 id="statTotalOrders" class="text-2xl font-black text-gray-900 font-display mt-0.5">24</h3>
+                <span class="text-[10px] text-[#0035AD] font-bold">8 Store Pickups</span>
+              </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl shadow-card-lift flex items-center space-x-4 border border-white/60">
+              <div class="w-12 h-12 rounded-xl bg-[#0035AD] text-white flex items-center justify-center shadow-md">
+                <i data-lucide="layers" class="w-6 h-6 text-[#F4E11B]"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-gray-500">Total Catalog Models</span>
+                <h3 id="statTotalProducts" class="text-2xl font-black text-gray-900 font-display mt-0.5">12</h3>
+                <span class="text-[10px] text-gray-500 font-medium">In 6 Categories</span>
+              </div>
+            </div>
+
+            <div class="glass-panel p-5 rounded-2xl shadow-card-lift flex items-center space-x-4 border border-white/60">
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shadow-md">
+                <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-bold text-gray-500">Inventory Alerts</span>
+                <h3 id="statLowStock" class="text-2xl font-black text-amber-600 font-display mt-0.5">2 Items</h3>
+                <span class="text-[10px] text-gray-500 font-medium">Stock ≤ 5 pairs</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Bookings & Quick Actions Split -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <div class="lg:col-span-8 glass-panel rounded-2xl shadow-card-lift p-6 border border-white/60">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="text-base font-extrabold text-gray-900 font-display">Recent Customer Orders & Store Reservations</h3>
+                  <p class="text-xs text-gray-500">Real-time submissions synced from customer portal</p>
+                </div>
+                <button onclick="switchAdminTab('orders')" class="text-xs font-bold text-[#0035AD] hover:underline">View All →</button>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead class="bg-gray-100/80 text-gray-600 uppercase tracking-wider font-semibold border-y border-gray-200">
+                    <tr>
+                      <th class="py-3 px-3">Order / Ref</th>
+                      <th class="py-3 px-3">Customer</th>
+                      <th class="py-3 px-3">Footwear Model</th>
+                      <th class="py-3 px-3">Channel</th>
+                      <th class="py-3 px-3">Status</th>
+                      <th class="py-3 px-3 text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboardRecentOrdersTable" class="divide-y divide-gray-200 font-medium">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Quick Store Sync & Inventory Health -->
+            <div class="lg:col-span-4 space-y-6">
+              <div class="glass-panel rounded-2xl shadow-card-lift p-6 border border-white/60">
+                <h3 class="text-sm font-extrabold text-[#0035AD] font-display mb-3">Live Promotional Banner</h3>
+                <p class="text-xs text-gray-500 mb-4">Control the headline announcement bar that appears above the storefront.</p>
+                <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-3">
+                  <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Currently Visible</span>
+                  <p id="dashboardCurrentBannerText" class="text-xs font-bold text-gray-800 mt-1">Use code KALYAN20 for Flat 20% Off</p>
+                </div>
+                <button onclick="switchAdminTab('offers')" class="w-full py-2 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-xl text-xs font-bold transition-all">
+                  Configure Offers & Banners
+                </button>
+              </div>
+
+              <div class="bg-gradient-to-br from-[#0035AD] to-[#001D5C] text-white rounded-2xl p-6 shadow-xl border border-[#F4E11B]/40 relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-[#F4E11B]/20 rounded-full blur-xl pointer-events-none"></div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-[#F4E11B] uppercase tracking-wider">Fast Camera Capture</span>
+                  <i data-lucide="camera" class="w-4 h-4 text-[#F4E11B]"></i>
+                </div>
+                <h4 class="text-base font-bold font-display">New physical shoes arrived in store?</h4>
+                <p class="text-xs text-blue-200 mt-1 mb-4 leading-relaxed">Take a photo straight from your smartphone or laptop webcam to instantly list and show the shoe live to shoppers.</p>
+                <button onclick="openAddProductModal()" class="w-full py-2.5 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] rounded-xl text-xs font-black transition-all flex items-center justify-center space-x-2 shadow-md">
+                  <i data-lucide="camera" class="w-4 h-4"></i>
+                  <span>Snap Photo & Add Footwear</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= TAB 2: PRODUCTS (CRUD) ================= -->
+        <div id="adminTab-products" class="admin-tab-content hidden space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel p-4 rounded-2xl border border-white/60 shadow-card-lift">
+            <div class="relative flex-1 max-w-md">
+              <input type="text" id="adminSearchProductInput" oninput="renderAdminProductsTable()" placeholder="Search products by model, SKU or category..." 
+                     class="w-full pl-9 pr-4 py-2 text-xs bg-white/90 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+              <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-2.5"></i>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <select id="adminCategoryFilter" onchange="renderAdminProductsTable()" class="text-xs bg-white/90 border border-gray-200 rounded-xl px-3 py-2 font-medium focus:outline-none">
+                <option value="All">All Categories</option>
+                <option value="Sneakers">Sneakers</option>
+                <option value="Running">Running</option>
+                <option value="Casual">Casual</option>
+                <option value="Boots">Boots</option>
+                <option value="Sandals">Sandals</option>
+                <option value="Formals">Formals</option>
+              </select>
+
+              <button onclick="openAddProductModal()" class="flex items-center space-x-2 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] px-4 py-2 rounded-xl text-xs font-black transition-all shadow-md">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span>Add Product</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-white/60 shadow-card-lift overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-100/90 text-gray-600 uppercase tracking-wider font-semibold border-b border-gray-200">
+                  <tr>
+                    <th class="py-3.5 px-4">Footwear</th>
+                    <th class="py-3.5 px-4">Category</th>
+                    <th class="py-3.5 px-4">Price / Strikethrough</th>
+                    <th class="py-3.5 px-4">Sizes</th>
+                    <th class="py-3.5 px-4">Stock Qty</th>
+                    <th class="py-3.5 px-4">Status</th>
+                    <th class="py-3.5 px-4">Badges</th>
+                    <th class="py-3.5 px-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductsTableBody" class="divide-y divide-gray-200 font-medium">
+                  <!-- Filled via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 bg-gray-50/80 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
+              <span id="adminTableFooterCount">Showing 0 products</span>
+              <span>Kalyan Shoe Mart Real-Time Sync</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB 3: ORDERS & BOOKINGS ================= -->
+        <div id="adminTab-orders" class="admin-tab-content hidden space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel p-4 rounded-2xl border border-white/60 shadow-card-lift">
+            <div>
+              <h3 class="text-sm font-extrabold text-[#0035AD] font-display">Customer Order & Store Reservation Ledger</h3>
+              <p class="text-xs text-gray-500">Manage statuses, store collections, and fulfillments</p>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <select id="adminOrderFilterType" onchange="renderAdminOrdersTable()" class="text-xs bg-white/90 border border-gray-200 rounded-xl px-3 py-2 font-medium focus:outline-none">
+                <option value="All">All Types (Store Pickup & Delivery)</option>
+                <option value="Store Pickup">Store Pickup Only</option>
+                <option value="Home Delivery">Home Delivery Only</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-white/60 shadow-card-lift overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-100/90 text-gray-600 uppercase tracking-wider font-semibold border-b border-gray-200">
+                  <tr>
+                    <th class="py-3.5 px-4">Order ID</th>
+                    <th class="py-3.5 px-4">Customer Details</th>
+                    <th class="py-3.5 px-4">Shoe Model & Size</th>
+                    <th class="py-3.5 px-4">Type</th>
+                    <th class="py-3.5 px-4">Total Amount</th>
+                    <th class="py-3.5 px-4">Fulfillment Status</th>
+                    <th class="py-3.5 px-4 text-right">Update Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminOrdersTableBody" class="divide-y divide-gray-200 font-medium">
+                  <!-- Filled via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB 4: OFFERS & DISCOUNTS ================= -->
+        <div id="adminTab-offers" class="admin-tab-content hidden space-y-8">
+          
+          <div class="glass-panel p-6 rounded-2xl border border-white/60 shadow-card-lift max-w-3xl space-y-5">
+            <div>
+              <h3 class="text-base font-extrabold text-[#0035AD] font-display">Site-Wide Header Announcement Banner</h3>
+              <p class="text-xs text-gray-500">Updates the promo text at the top of the Customer Storefront immediately.</p>
+            </div>
+
+            <div class="space-y-3">
+              <label class="block text-xs font-bold text-gray-700">Announcement Banner Text</label>
+              <input type="text" id="adminBannerTextInput" value="Use code KALYAN20 for Flat 20% Off + Free In-Store Pickup!" 
+                     class="w-full px-4 py-2.5 text-xs bg-white/90 border border-gray-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" id="adminBannerToggleCheckbox" checked class="w-4 h-4 text-[#0035AD] rounded focus:ring-[#0035AD] accent-[#0035AD]">
+                <span class="text-xs font-semibold text-gray-800">Show Announcement Bar on Storefront</span>
+              </label>
+
+              <button onclick="saveAnnouncementBanner()" class="px-5 py-2.5 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+                Save & Apply to Store
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-2xl border border-white/60 shadow-card-lift p-6 max-w-3xl space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-base font-extrabold text-[#0035AD] font-display">Active Store Coupon Codes</h3>
+                <p class="text-xs text-gray-500">Checkout discount vouchers applied in customer cart</p>
+              </div>
+              <button onclick="openAddCouponModal()" class="px-4 py-2 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] font-bold text-xs rounded-xl transition-all flex items-center space-x-1.5 shadow-sm">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Add Coupon</span>
+              </button>
+            </div>
+
+            <div class="divide-y divide-gray-200" id="adminCouponsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= TAB 5: CUSTOMER CRM ================= -->
+        <div id="adminTab-customers" class="admin-tab-content hidden space-y-6">
+          <div class="glass-panel p-6 rounded-2xl border border-white/60 shadow-card-lift">
+            <h3 class="text-base font-extrabold text-[#0035AD] font-display mb-1">Customer Loyalty & Reservation Profiles</h3>
+            <p class="text-xs text-gray-500 mb-6">Aggregated from direct online checkouts and in-store booking reservations</p>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-gray-100/90 text-gray-600 uppercase tracking-wider font-semibold border-b border-gray-200">
+                  <tr>
+                    <th class="py-3 px-3">Customer</th>
+                    <th class="py-3 px-3">Contact Number</th>
+                    <th class="py-3 px-3">Preferred Mode</th>
+                    <th class="py-3 px-3">Total Orders</th>
+                    <th class="py-3 px-3">Lifetime Value</th>
+                    <th class="py-3 px-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminCustomersTableBody" class="divide-y divide-gray-200 font-medium">
+                  <!-- Generated from orders data -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 6: SETTINGS ================= -->
+        <div id="adminTab-settings" class="admin-tab-content hidden space-y-6">
+          <div class="glass-panel p-6 rounded-2xl border border-white/60 shadow-card-lift max-w-2xl space-y-6">
+            <h3 class="text-base font-extrabold text-[#0035AD] font-display">Store Configuration</h3>
+            
+            <div class="space-y-4 text-xs font-medium">
+              <div>
+                <label class="block font-bold text-gray-700 mb-1">Store Name</label>
+                <input type="text" id="settingStoreName" value="Kalyan Shoe Mart" class="w-full px-4 py-2 border border-gray-300 rounded-xl bg-gray-50">
+              </div>
+
+              <div>
+                <label class="block font-bold text-gray-700 mb-1">Store Address for Pickup</label>
+                <textarea rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-xl bg-gray-50">Shop #14-18, Station Road, Market Plaza, Near City Center, Kalyan (West) - 421301</textarea>
+              </div>
+
+              <div>
+                <label class="block font-bold text-gray-700 mb-1">Store WhatsApp / Support Contact</label>
+                <input type="text" value="+91 98765 43210" class="w-full px-4 py-2 border border-gray-300 rounded-xl bg-gray-50">
+              </div>
+
+              <div class="pt-4 border-t border-gray-200 flex items-center justify-between">
+                <button onclick="resetDefaultCatalog()" class="text-rose-600 hover:text-rose-700 text-xs font-bold underline">
+                  Reset Catalog to Default Demo Products
+                </button>
+                <button onclick="showToast('Store settings saved successfully!')" class="px-5 py-2.5 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-xl font-bold">
+                  Save Settings
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- ========================= MODALS & SLIDEOVERS =========================== -->
+  <!-- ========================================================================= -->
+
+  <!-- AUTH MODAL: SECURE SEPARATE STAFF ACCESS -->
+  <div id="adminAuthModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative">
+      <button onclick="closeAdminAuthModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-400">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-[#0035AD] text-[#F4E11B] mx-auto flex items-center justify-center mb-2 shadow-md">
+          <i data-lucide="shield-lock" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-lg font-extrabold text-[#0035AD] font-display">Staff Admin Authentication</h3>
+        <p class="text-xs text-gray-500">Enter secure store PIN or key to access inventory management</p>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-xs font-medium">
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Admin Password / PIN</label>
+          <input type="password" id="adminPasswordInput" required placeholder="Default password is: admin123" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-gray-50 focus:bg-white text-center text-sm font-mono tracking-widest">
+          <span class="text-[10px] text-gray-400 block mt-1 text-center">Demo Staff Pass: <code class="text-[#0035AD] font-bold">admin123</code></span>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-[#0035AD] hover:bg-[#00257A] text-white font-extrabold rounded-xl text-xs shadow-md transition-all flex items-center justify-center space-x-2">
+          <span>Authorize Access</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-[#F4E11B]"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 1. CART & CHECKOUT DRAWER -->
+  <div id="cartDrawerBackdrop" onclick="toggleCartDrawer(false)" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+  <div id="cartDrawer" class="fixed right-0 top-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-white">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 rounded-xl bg-[#EEF4FF] text-[#0035AD] flex items-center justify-center">
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-[#0035AD]"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-extrabold text-[#0035AD] font-display">Your Footwear Cart</h3>
+          <p class="text-[11px] text-gray-500" id="cartHeaderSub">0 items selected</p>
+        </div>
+      </div>
+      <button onclick="toggleCartDrawer(false)" class="p-2 rounded-full hover:bg-gray-100 text-gray-500">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+      <!-- Items dynamically populated -->
+    </div>
+
+    <div id="cartEmptyState" class="hidden flex-1 flex flex-col items-center justify-center p-6 text-center">
+      <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 mb-3">
+        <i data-lucide="shopping-cart" class="w-8 h-8"></i>
+      </div>
+      <h4 class="text-sm font-bold text-gray-800">Your bag is empty</h4>
+      <p class="text-xs text-gray-500 mt-1 max-w-xs">Looks like you haven't added any shoes yet. Browse our top sellers and pick your size!</p>
+      <button onclick="toggleCartDrawer(false); document.getElementById('shop').scrollIntoView();" class="mt-4 px-5 py-2 bg-[#0035AD] text-white text-xs font-bold rounded-full">
+        Start Shopping
+      </button>
+    </div>
+
+    <div id="cartFooter" class="p-5 border-t border-gray-100 bg-[#F8F9FA] space-y-3">
+      <div class="flex items-center space-x-2">
+        <input type="text" id="couponInput" placeholder="Promo code (e.g. KALYAN20)" class="flex-1 px-3 py-2 text-xs bg-white border border-gray-200 rounded-xl focus:outline-none uppercase font-semibold">
+        <button onclick="applyCouponCode()" class="px-4 py-2 bg-[#0035AD] hover:bg-[#00257A] text-white text-xs font-bold rounded-xl transition-all">Apply</button>
+      </div>
+      <div id="couponAppliedBadge" class="hidden flex items-center justify-between text-xs text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 font-semibold">
+        <span id="couponAppliedText">Code KALYAN20 Applied</span>
+        <button onclick="removeCoupon()" class="text-xs text-rose-600 hover:underline">Remove</button>
+      </div>
+
+      <div class="space-y-1.5 text-xs text-gray-600 pt-2 font-medium">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span id="cartSubtotal" class="font-bold text-gray-900">₹0</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Promotional Discount</span>
+          <span id="cartDiscount" class="text-emerald-600 font-bold">-₹0</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Pan-India Shipping</span>
+          <span class="text-emerald-600 font-bold uppercase text-[10px]">FREE</span>
+        </div>
+        <div class="flex justify-between text-sm font-black text-gray-900 pt-2 border-t border-gray-200 font-display">
+          <span>Total Payable</span>
+          <span id="cartGrandTotal" class="text-base text-[#0035AD] font-display">₹0</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-2">
+        <button onclick="openCheckoutModal('pickup')" class="w-full py-3 px-3 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] font-extrabold text-xs rounded-xl shadow-sm transition-all text-center">
+          Reserve at Store (Free)
+        </button>
+        <button onclick="openCheckoutModal('delivery')" class="w-full py-3 px-3 bg-[#0035AD] hover:bg-[#00257A] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all text-center">
+          Buy Online Now →
+        </button>
+      </div>
+      <p class="text-[10px] text-center text-gray-400 font-medium">✨ 7-Day Free Size Exchange Guarantee Included</p>
+    </div>
+
+  </div>
+
+
+  <!-- 2. CHECKOUT & STORE RESERVATION MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      
+      <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-6">
+        <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#FEF9C3] text-[#854D0E] mb-2 uppercase">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#0035AD]"></i>
+          <span id="checkoutModeBadge">Store Reservation / Online Order</span>
+        </div>
+        <h3 id="checkoutModalTitle" class="text-xl font-extrabold text-[#0035AD] font-display">Complete Your Footwear Booking</h3>
+        <p class="text-xs text-gray-500 mt-1">Please provide your contact details for instant confirmation & SMS updates.</p>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handlePlaceOrder(event)" class="space-y-4 text-xs font-medium">
+        
+        <div class="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl mb-3">
+          <button type="button" onclick="setCheckoutMode('pickup')" id="modeBtnPickup" class="py-2 text-xs font-bold rounded-lg transition-all bg-white text-[#0035AD] shadow-sm">
+            👟 In-Store Pickup
+          </button>
+          <button type="button" onclick="setCheckoutMode('delivery')" id="modeBtnDelivery" class="py-2 text-xs font-bold rounded-lg transition-all text-gray-600 hover:text-black">
+            🚚 Home Delivery
+          </button>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Ramesh Kumar" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-[#F8F9FA] focus:bg-white">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Mobile / WhatsApp Number *</label>
+            <input type="tel" id="custPhone" required placeholder="+91 98765 00000" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-[#F8F9FA] focus:bg-white">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Email Address</label>
+            <input type="email" id="custEmail" placeholder="ramesh@example.com" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-[#F8F9FA] focus:bg-white">
+          </div>
+        </div>
+
+        <div id="deliveryAddressField" class="hidden">
+          <label class="block font-bold text-gray-700 mb-1">Shipping Address *</label>
+          <textarea id="custAddress" rows="2" placeholder="Full street address, flat/door number, landmark, Kalyan PIN..." class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-[#F8F9FA] focus:bg-white"></textarea>
+        </div>
+
+        <div id="storePickupNote" class="p-3 rounded-xl bg-[#FEF9C3] border border-[#F4E11B] text-[#854D0E] text-[11px] leading-relaxed">
+          <strong>Store Pickup Location:</strong> Kalyan Shoe Mart, Shop #14-18 Station Road, Kalyan (W). Your pair will be reserved at the counter under your name for <strong>48 Hours</strong>. Try before paying!
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Payment Method</label>
+          <select id="custPaymentMethod" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-white font-semibold">
+            <option value="Pay at Store (Cash/UPI/Card)">Pay at Store Counter (Cash, UPI, or Card)</option>
+            <option value="Online UPI / Card">Online Payment (UPI, GPay, Credit/Debit Card)</option>
+            <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+          <span class="text-gray-500 font-semibold">Total Amount:</span>
+          <span id="modalCheckoutTotal" class="text-base font-extrabold text-[#0035AD] font-display">₹0</span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-[#0035AD] hover:bg-[#00257A] text-white font-extrabold rounded-full text-xs shadow-lg transition-all flex items-center justify-center space-x-2">
+          <i data-lucide="check-circle" class="w-4 h-4 text-[#F4E11B]"></i>
+          <span id="checkoutSubmitBtnLabel">Confirm Reservation / Place Order</span>
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- 3. ADD / EDIT PRODUCT MODAL (Admin CRUD) -->
+  <div id="productCrudModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+      
+      <button onclick="closeProductCrudModal()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs font-bold text-[#0035AD] uppercase tracking-wider">Inventory Master</span>
+        <h3 id="productCrudModalTitle" class="text-xl font-extrabold text-gray-900 font-display">Add New Footwear Model</h3>
+        <p class="text-xs text-gray-500 mt-0.5">Specify model specs, sizes, and pricing to reflect live in storefront.</p>
+      </div>
+
+      <form id="productCrudForm" onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs font-medium">
+        <input type="hidden" id="crudProductId" value="">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="sm:col-span-2">
+            <label class="block font-bold text-gray-700 mb-1">Product Name *</label>
+            <input type="text" id="crudName" required placeholder="e.g. Velocity Air Runner X" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">SKU / Model # *</label>
+            <input type="text" id="crudSku" required placeholder="KSM-2027" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Category *</label>
+            <select id="crudCategory" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-white">
+              <option value="Sneakers">Sneakers</option>
+              <option value="Running">Running</option>
+              <option value="Casual">Casual</option>
+              <option value="Boots">Boots</option>
+              <option value="Sandals">Sandals</option>
+              <option value="Formals">Formals</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Selling Price (₹) *</label>
+            <input type="number" id="crudPrice" required min="100" placeholder="2499" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Original Price (₹)</label>
+            <input type="number" id="crudOriginalPrice" min="100" placeholder="3499" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Available Quantity / Stock *</label>
+            <input type="number" id="crudStock" required min="0" placeholder="25" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Highlight Badge Tag</label>
+            <select id="crudBadge" class="w-full px-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD] bg-white">
+              <option value="Best Seller">Best Seller (Yellow Badge)</option>
+              <option value="Popular">Popular (Royal Blue Badge)</option>
+              <option value="New Arrival">New Arrival</option>
+              <option value="Sale 20% Off">Sale 20% Off (Red)</option>
+              <option value="None">No Badge</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1.5">Available Sizes (UK / India)</label>
+          <div class="flex flex-wrap gap-2.5" id="crudSizesContainer">
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="6" checked class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">6</span>
+            </label>
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="7" checked class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">7</span>
+            </label>
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="8" checked class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">8</span>
+            </label>
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="9" checked class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">9</span>
+            </label>
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="10" checked class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">10</span>
+            </label>
+            <label class="flex items-center space-x-1 px-3 py-1.5 rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" value="11" class="rounded text-[#0035AD] accent-[#0035AD]">
+              <span class="font-bold">11</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Image URL / Live Camera Capture</label>
+          <div class="flex flex-wrap gap-2">
+            <input type="url" id="crudImageUrl" oninput="updateCrudImgPreview(this.value)" placeholder="https://images.unsplash.com/..." class="flex-1 min-w-[200px] px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0035AD]">
+            
+            <!-- Live Camera Button -->
+            <button type="button" onclick="startCameraStream()" class="px-3.5 py-2 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-xl text-xs font-bold flex items-center space-x-1.5 shadow-sm transition-all">
+              <i data-lucide="camera" class="w-4 h-4 text-[#F4E11B]"></i>
+              <span>Use Camera</span>
+            </button>
+
+            <!-- File Upload Option -->
+            <label class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl text-gray-700 text-xs font-bold cursor-pointer flex items-center space-x-1">
+              <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+              <span>Upload</span>
+              <input type="file" accept="image/*" onchange="handleFileUpload(event)" class="hidden">
+            </label>
+
+            <button type="button" onclick="setPresetShoeImage()" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl text-gray-700 text-xs font-bold">Preset</button>
+          </div>
+
+          <!-- Interactive Live Camera Viewfinder Box -->
+          <div id="cameraViewContainer" class="hidden mt-3 p-3 bg-black/95 rounded-2xl relative border-2 border-[#F4E11B] flex flex-col items-center">
+            <div class="relative w-full max-w-sm aspect-video bg-black rounded-xl overflow-hidden flex items-center justify-center">
+              <video id="cameraVideo" autoplay playsinline class="w-full h-full object-cover"></video>
+              <canvas id="cameraCanvas" class="hidden"></canvas>
+              
+              <!-- Crosshair viewfinder lines -->
+              <div class="absolute inset-4 border border-dashed border-[#F4E11B]/60 pointer-events-none rounded-lg flex items-center justify-center">
+                <span class="text-[10px] text-[#F4E11B] bg-black/70 px-2 py-0.5 rounded">Center Footwear in Frame</span>
+              </div>
+            </div>
+
+            <div class="mt-3 flex items-center space-x-3">
+              <button type="button" onclick="captureCameraPhoto()" class="px-5 py-2 bg-[#F4E11B] hover:bg-[#DFCC0D] text-[#0035AD] font-black rounded-full text-xs flex items-center space-x-1.5 shadow-md">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+                <span>Capture Photo</span>
+              </button>
+              <button type="button" onclick="stopCameraStream()" class="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-full text-xs">
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <!-- Image Preview -->
+          <div class="mt-2 w-full h-28 bg-gray-50 border border-dashed border-gray-200 rounded-xl flex items-center justify-center overflow-hidden relative">
+            <img id="crudImgPreview" src="" alt="Preview" class="h-full object-contain hidden p-1">
+            <span id="crudImgPlaceholder" class="text-gray-400 text-[11px]">Image preview will appear here</span>
+            <button type="button" id="removeImgBtn" onclick="clearProductImage()" class="hidden absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-black text-white rounded-full">
+              <i data-lucide="x" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <input type="checkbox" id="crudFeatured" checked class="w-4 h-4 text-[#0035AD] rounded focus:ring-[#0035AD] accent-[#0035AD]">
+            <span class="font-bold text-gray-800">Feature this shoe on Customer Homepage Grid</span>
+          </label>
+        </div>
+
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-end space-x-3">
+          <button type="button" onclick="closeProductCrudModal()" class="px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-bold hover:bg-gray-50">Cancel</button>
+          <button type="submit" class="px-6 py-2.5 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-xl font-bold flex items-center space-x-2">
+            <i data-lucide="save" class="w-4 h-4 text-[#F4E11B]"></i>
+            <span id="crudSubmitLabel">Save Product</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+  <!-- 4. ORDER / RESERVATION LOOKUP MODAL -->
+  <div id="bookingLookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl relative">
+      <button onclick="closeBookingLookupModal()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center mb-5">
+        <div class="w-12 h-12 rounded-2xl bg-[#EEF4FF] text-[#0035AD] mx-auto flex items-center justify-center mb-2">
+          <i data-lucide="search-check" class="w-6 h-6 text-[#0035AD]"></i>
+        </div>
+        <h3 class="text-lg font-extrabold text-[#0035AD] font-display">Track Order or Store Booking</h3>
+        <p class="text-xs text-gray-500">Enter your Mobile Number or Order Reference ID</p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="flex space-x-2">
+          <input type="text" id="lookupQuery" placeholder="e.g. 9876543210 or KSM-ORD-101" class="flex-1 px-4 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#0035AD] font-medium">
+          <button onclick="performBookingLookup()" class="px-4 py-2.5 bg-[#0035AD] text-white rounded-xl text-xs font-bold hover:bg-[#00257A]">Track</button>
+        </div>
+
+        <div id="lookupResults" class="space-y-2 max-h-60 overflow-y-auto pt-2">
+          <p class="text-center text-xs text-gray-400 py-4">No active lookup queried yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. QUICK SIZE SELECTOR MODAL -->
+  <div id="quickSelectModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl relative">
+      <button onclick="closeQuickSelectModal()" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-black">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="text-center mb-4">
+        <img id="quickModalImg" src="" alt="" class="w-24 h-24 object-contain mx-auto mb-2">
+        <h4 id="quickModalTitle" class="text-sm font-bold text-gray-900 font-display">Shoe Title</h4>
+        <p id="quickModalPrice" class="text-xs font-extrabold text-[#0035AD] mt-0.5">₹0</p>
+      </div>
+
+      <div class="mb-4">
+        <span class="block text-xs font-bold text-gray-700 mb-2">Select Your UK/India Size:</span>
+        <div id="quickModalSizes" class="flex flex-wrap gap-2 justify-center">
+          <!-- Filled via JS -->
+        </div>
+      </div>
+
+      <button id="quickModalConfirmBtn" onclick="confirmQuickAddToCart()" class="w-full py-3 bg-[#0035AD] hover:bg-[#00257A] text-white rounded-full text-xs font-bold transition-all flex items-center justify-center space-x-2">
+        <i data-lucide="shopping-bag" class="w-4 h-4 text-[#F4E11B]"></i>
+        <span>Add to Bag</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- 6. TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- ========================================================================= -->
+  <!-- ======================== CORE APPLICATION SCRIPT ======================== -->
+  <!-- ========================================================================= -->
+  <script>
+    /* ================= INITIAL STATE & DATA STORAGE ================= */
+    const DEFAULT_PRODUCTS = [
+      {
+        id: 'ksm-1',
+        sku: 'VEL-ROYAL-01',
+        name: 'Velocity Royal Air Runner 27',
+        category: 'Sneakers',
+        price: 2499,
+        originalPrice: 3499,
+        rating: 4.9,
+        reviewsCount: 142,
+        badge: 'Best Seller',
+        stock: 28,
+        sizes: [6, 7, 8, 9, 10, 11],
+        imageUrl: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-2',
+        sku: 'URB-LOW-02',
+        name: 'Urban Street Low Canvas',
+        category: 'Casual',
+        price: 1899,
+        originalPrice: 2499,
+        rating: 4.8,
+        reviewsCount: 89,
+        badge: 'Popular',
+        stock: 14,
+        sizes: [7, 8, 9, 10],
+        imageUrl: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-3',
+        sku: 'HYP-SPD-03',
+        name: 'HyperSpeed Zoom Track Shoes',
+        category: 'Running',
+        price: 3199,
+        originalPrice: 4299,
+        rating: 5.0,
+        reviewsCount: 64,
+        badge: 'Sale 20% Off',
+        stock: 4,
+        sizes: [8, 9, 10],
+        imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-4',
+        sku: 'RUG-BOT-04',
+        name: 'Rugged Nomad Leather Boots',
+        category: 'Boots',
+        price: 3899,
+        originalPrice: 4999,
+        rating: 4.7,
+        reviewsCount: 52,
+        badge: 'New Arrival',
+        stock: 19,
+        sizes: [7, 8, 9, 10, 11],
+        imageUrl: 'https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-5',
+        sku: 'AIR-GLD-05',
+        name: 'AeroGlide Pro Court Performance',
+        category: 'Sneakers',
+        price: 2799,
+        originalPrice: 3299,
+        rating: 4.9,
+        reviewsCount: 110,
+        badge: 'Best Seller',
+        stock: 22,
+        sizes: [6, 7, 8, 9, 10],
+        imageUrl: 'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-6',
+        sku: 'ROY-MONK-06',
+        name: 'Royal Heritage Double Monk Oxford',
+        category: 'Formals',
+        price: 2999,
+        originalPrice: 3999,
+        rating: 4.9,
+        reviewsCount: 38,
+        badge: 'Popular',
+        stock: 11,
+        sizes: [7, 8, 9, 10],
+        imageUrl: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-7',
+        sku: 'TERR-SLD-07',
+        name: 'TerraGrip All-Weather Outdoor Sandal',
+        category: 'Sandals',
+        price: 1299,
+        originalPrice: 1699,
+        rating: 4.6,
+        reviewsCount: 97,
+        badge: 'Sale 20% Off',
+        stock: 35,
+        sizes: [6, 7, 8, 9, 10, 11],
+        imageUrl: 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      },
+      {
+        id: 'ksm-8',
+        sku: 'MAR-STR-08',
+        name: 'Marathon Cloud Stride Racer',
+        category: 'Running',
+        price: 3499,
+        originalPrice: 4499,
+        rating: 4.8,
+        reviewsCount: 46,
+        badge: 'New Arrival',
+        stock: 3,
+        sizes: [8, 9, 10],
+        imageUrl: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80',
+        featured: true
+      }
+    ];
+
+    const DEFAULT_CATEGORIES = [
+      { name: 'Sneakers', count: '12+ Models', img: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=400&q=80' },
+      { name: 'Running', count: '8+ Models', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80' },
+      { name: 'Casual', count: '15+ Models', img: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=400&q=80' },
+      { name: 'Boots', count: '6+ Models', img: 'https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=400&q=80' },
+      { name: 'Sandals', count: '9+ Models', img: 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=400&q=80' },
+      { name: 'Formals', count: '10+ Models', img: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=400&q=80' },
+    ];
+
+    const DEFAULT_ORDERS = [
+      {
+        id: 'KSM-ORD-101',
+        customerName: 'Anil Deshmukh',
+        phone: '9820198201',
+        email: 'anil.d@gmail.com',
+        modelName: 'Velocity Royal Air Runner 27',
+        size: 9,
+        quantity: 1,
+        totalAmount: 2499,
+        type: 'Store Pickup',
+        status: 'Confirmed',
+        date: '2027-04-12 11:30 AM',
+        payment: 'Pay at Store Counter'
+      },
+      {
+        id: 'KSM-ORD-102',
+        customerName: 'Pooja Sharma',
+        phone: '9876512345',
+        email: 'pooja.s@outlook.com',
+        modelName: 'Urban Street Low Canvas',
+        size: 7,
+        quantity: 1,
+        totalAmount: 1899,
+        type: 'Home Delivery',
+        status: 'Shipped',
+        date: '2027-04-12 02:15 PM',
+        payment: 'Online UPI'
+      },
+      {
+        id: 'KSM-ORD-103',
+        customerName: 'Vikas Patil',
+        phone: '9988776655',
+        email: 'vikas.patil@yahoo.com',
+        modelName: 'Rugged Nomad Leather Boots',
+        size: 10,
+        quantity: 1,
+        totalAmount: 3899,
+        type: 'Store Pickup',
+        status: 'Ready for Pickup',
+        date: '2027-04-13 10:00 AM',
+        payment: 'Pay at Store Counter'
+      }
+    ];
+
+    const DEFAULT_COUPONS = [
+      { code: 'KALYAN20', discount: 20, type: 'percent', label: 'Flat 20% Off' },
+      { code: 'ROYALSTEP', discount: 300, type: 'flat', label: '₹300 Off First Order' },
+      { code: 'SUMMER27', discount: 15, type: 'percent', label: '15% Off Summer Collection' }
+    ];
+
+    // LocalStorage-backed state for real separation & persistence
+    function loadStorage(key, fallback) {
+      try {
+        const item = localStorage.getItem('ksm_' + key);
+        return item ? JSON.parse(item) : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function saveStorage(key, value) {
+      try {
+        localStorage.setItem('ksm_' + key, JSON.stringify(value));
+      } catch (e) {}
+    }
+
+    let state = {
+      currentPortal: 'storefront', // 'storefront' | 'admin'
+      products: loadStorage('products', DEFAULT_PRODUCTS),
+      orders: loadStorage('orders', DEFAULT_ORDERS),
+      coupons: loadStorage('coupons', DEFAULT_COUPONS),
+      cart: [],
+      activeCategory: 'All',
+      searchQuery: '',
+      activeCoupon: null,
+      bannerText: loadStorage('bannerText', 'Use code KALYAN20 for Flat 20% Off + Free In-Store Pickup!'),
+      bannerVisible: loadStorage('bannerVisible', true),
+      checkoutMode: 'pickup',
+      quickSelectPendingProduct: null,
+      quickSelectedSize: null,
+      cameraMediaStream: null
+    };
+
+    /* ================= INITIALIZATION & ROUTING ================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Sync banner from state
+      const banner = document.getElementById('promo-banner');
+      const bannerTextEl = document.getElementById('promo-text');
+      if (banner && bannerTextEl) {
+        if (!state.bannerVisible) {
+          banner.classList.add('hidden');
+        } else {
+          bannerTextEl.textContent = state.bannerText;
+        }
+      }
+
+      renderCategoryGrid();
+      renderStorefrontProducts();
+      renderCartDrawer();
+      updateCartBadge();
+      lucide.createIcons();
+
+      // Check if URL specifically targets admin: e.g. #admin or ?admin
+      if (window.location.hash === '#admin' || window.location.search.includes('admin')) {
+        openAdminAuthModal();
+      }
+
+      // Keyboard shortcut for staff: Ctrl + Shift + A (or Cmd + Shift + A)
+      window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+          e.preventDefault();
+          if (state.currentPortal === 'admin') {
+            exitAdminPortal();
+          } else {
+            openAdminAuthModal();
+          }
+        }
+      });
+    });
+
+    /* ================= SEPARATE ADMIN ACCESS & AUTH ================= */
+    function openAdminAuthModal() {
+      document.getElementById('adminAuthModal').classList.remove('hidden');
+      const pwd = document.getElementById('adminPasswordInput');
+      if (pwd) {
+        pwd.value = '';
+        setTimeout(() => pwd.focus(), 100);
+      }
+      lucide.createIcons();
+    }
+
+    function closeAdminAuthModal() {
+      document.getElementById('adminAuthModal').classList.add('hidden');
+      if (window.location.hash === '#admin') {
+        history.replaceState(null, null, ' ');
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('adminPasswordInput').value.trim();
+
+      // Simple demo authentication key: 'admin123'
+      if (pwd === 'admin123' || pwd === 'kalyan') {
+        closeAdminAuthModal();
+        enterAdminPortal();
+      } else {
+        showToast('Invalid staff password! Use "admin123" for demo access.');
+      }
+    }
+
+    function enterAdminPortal() {
+      state.currentPortal = 'admin';
+      window.location.hash = 'admin';
+
+      document.getElementById('storefront-portal').classList.add('hidden');
+      document.getElementById('promo-banner').classList.add('hidden');
+      document.getElementById('admin-portal').classList.remove('hidden');
+
+      switchAdminTab('dashboard');
+      refreshAdminStats();
+      showToast('Staff authenticated: Welcome to Kalyan Shoe Mart Admin');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function exitAdminPortal() {
+      state.currentPortal = 'storefront';
+      window.location.hash = '';
+
+      document.getElementById('admin-portal').classList.add('hidden');
+      document.getElementById('storefront-portal').classList.remove('hidden');
+
+      if (state.bannerVisible) {
+        document.getElementById('promo-banner').classList.remove('hidden');
+      }
+
+      renderStorefrontProducts();
+      showToast('Returned to customer storefront');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchAdminTab(tabKey) {
+      document.querySelectorAll('.admin-nav-item').forEach(btn => {
+        btn.classList.remove('bg-[#F4E11B]', 'text-[#0035AD]', 'active', 'shadow-md');
+        btn.classList.add('text-blue-100');
+      });
+      const activeBtn = document.getElementById(`tabBtn-${tabKey}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#F4E11B]', 'text-[#0035AD]', 'active', 'shadow-md');
+        activeBtn.classList.remove('text-blue-100');
+      }
+
+      document.querySelectorAll('.admin-tab-content').forEach(tab => tab.classList.add('hidden'));
+      const activeTab = document.getElementById(`adminTab-${tabKey}`);
+      if (activeTab) activeTab.classList.remove('hidden');
+
+      const titleMap = {
+        dashboard: { t: 'Dashboard Overview', s: 'Real-time metrics, product stock updates & reservations' },
+        products: { t: 'Footwear Products (CRUD)', s: 'Manage catalog, sizing variants, inventory stock and highlight tags' },
+        orders: { t: 'Customer Orders & Store Reservations', s: 'Fulfillment queue, store collections & shipping updates' },
+        offers: { t: 'Discounts, Banners & Coupon Codes', s: 'Instant site-wide promotional announcements and cart vouchers' },
+        customers: { t: 'Customer Ledger', s: 'Directory of customers who purchased or reserved pairs in store' },
+        settings: { t: 'Store Mart Configuration', s: 'Manage store timings, flagship address and demo data' }
+      };
+
+      if (titleMap[tabKey]) {
+        document.getElementById('adminSectionTitle').textContent = titleMap[tabKey].t;
+        document.getElementById('adminSectionSubtitle').textContent = titleMap[tabKey].s;
+      }
+
+      if (tabKey === 'dashboard') {
+        refreshAdminStats();
+        renderDashboardRecentOrders();
+      } else if (tabKey === 'products') {
+        renderAdminProductsTable();
+      } else if (tabKey === 'orders') {
+        renderAdminOrdersTable();
+      } else if (tabKey === 'offers') {
+        renderAdminCouponsList();
+      } else if (tabKey === 'customers') {
+        renderAdminCustomersTable();
+      }
+
+      lucide.createIcons();
+    }
+
+    /* ================= STOREFRONT RENDERING ================= */
+    function renderCategoryGrid() {
+      const container = document.getElementById('categoryGrid');
+      if (!container) return;
+
+      container.innerHTML = DEFAULT_CATEGORIES.map(cat => `
+        <div onclick="filterCategory('${cat.name}')" class="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-card-lift hover:-translate-y-1 transition-all cursor-pointer flex flex-col items-center text-center">
+          <div class="w-full h-24 bg-gray-50 rounded-xl overflow-hidden mb-3 flex items-center justify-center p-2 relative group-hover:bg-[#EEF4FF] transition-colors">
+            <img src="${cat.img}" alt="${cat.name}" class="h-full object-contain transform group-hover:scale-110 transition-transform">
+          </div>
+          <h4 class="text-xs sm:text-sm font-extrabold text-gray-900 group-hover:text-[#0035AD] transition-colors">${cat.name}</h4>
+          <span class="text-[10px] text-gray-500 font-medium">${cat.count}</span>
+          <div class="mt-2 text-[10px] font-bold text-[#0035AD] flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <span>Shop Now</span>
+            <i data-lucide="arrow-right" class="w-2.5 h-2.5 text-[#0035AD]"></i>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderStorefrontProducts() {
+      const grid = document.getElementById('productsGrid');
+      const emptyState = document.getElementById('emptySearch');
+      if (!grid) return;
+
+      let filtered = state.products.filter(p => {
+        const matchesCategory = (state.activeCategory === 'All') || (p.category === state.activeCategory);
+        const matchesSearch = !state.searchQuery || 
+          p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
+          p.category.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+          p.sku.toLowerCase().includes(state.searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      grid.innerHTML = filtered.map(product => {
+        let badgeClass = 'badge-yellow';
+        if (product.badge && product.badge.toLowerCase().includes('popular')) {
+          badgeClass = 'badge-blue';
+        } else if (product.badge && (product.badge.toLowerCase().includes('sale') || product.badge.toLowerCase().includes('off'))) {
+          badgeClass = 'badge-sale';
+        }
+
+        const discountPercent = product.originalPrice 
+          ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
+          : 0;
+
+        const isLowStock = product.stock <= 5 && product.stock > 0;
+        const isOutOfStock = product.stock <= 0;
+
+        return `
+          <div class="product-card bg-white rounded-3xl p-5 border border-gray-100 shadow-sm hover:shadow-card-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group">
+            
+            <div class="flex items-center justify-between mb-2">
+              ${product.badge && product.badge !== 'None' ? `
+                <span class="text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider ${badgeClass}">
+                  ${product.badge}
+                </span>
+              ` : '<span></span>'}
+
+              ${discountPercent > 0 ? `
+                <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                  -${discountPercent}%
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- Shoe Cutout Image Container with Royal Blue & Bright Yellow glow -->
+            <div class="relative w-full h-48 my-2 rounded-2xl bg-[#F8F9FA] group-hover:bg-[#EEF4FF] transition-colors flex items-center justify-center p-4 overflow-hidden">
+              <div class="absolute w-32 h-32 rounded-full bg-[#F4E11B] opacity-0 group-hover:opacity-40 blur-xl transition-opacity"></div>
+              <img src="${product.imageUrl}" alt="${product.name}" 
+                   onerror="this.src='https://placehold.co/400x300/EEF4FF/0035AD?text=Kalyan+Footwear'"
+                   class="product-img max-h-40 object-contain drop-shadow-md select-none">
+            </div>
+
+            <div class="space-y-1.5 mt-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#0035AD]">${product.category}</span>
+                <div class="flex items-center space-x-1 text-xs font-bold text-gray-700">
+                  <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-amber-400"></i>
+                  <span>${product.rating || '4.9'}</span>
+                  <span class="text-[10px] text-gray-400 font-normal">(${product.reviewsCount || 42})</span>
+                </div>
+              </div>
+
+              <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#0035AD] line-clamp-1 font-sans">
+                ${product.name}
+              </h3>
+
+              <div class="flex items-center space-x-1 pt-1 overflow-x-auto text-[10px] font-bold text-gray-500">
+                <span class="text-[9px] uppercase tracking-wide text-gray-400 mr-0.5">Sizes:</span>
+                ${(product.sizes || [7,8,9,10]).map(s => `
+                  <span class="bg-gray-100 rounded px-1.5 py-0.5">${s}</span>
+                `).join('')}
+              </div>
+
+              ${isLowStock ? `
+                <p class="text-[10px] font-bold text-amber-600 flex items-center space-x-1 pt-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  <span>Only ${product.stock} pairs left!</span>
+                </p>
+              ` : isOutOfStock ? `
+                <p class="text-[10px] font-bold text-rose-600">Sold Out in Store</p>
+              ` : ''}
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+              <div>
+                <div class="text-base font-black text-[#0035AD] font-display">
+                  ₹${product.price.toLocaleString('en-IN')}
+                </div>
+                ${product.originalPrice ? `
+                  <div class="text-[11px] text-gray-400 line-through font-medium">
+                    ₹${product.originalPrice.toLocaleString('en-IN')}
+                  </div>
+                ` : ''}
+              </div>
+
+              <button onclick="promptSizeAndAddToCart('${product.id}')" 
+                      ${isOutOfStock ? 'disabled' : ''}
+                      class="flex items-center space-x-1.5 px-3.5 py-2 rounded-full ${isOutOfStock ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#0035AD] hover:bg-[#F4E11B] hover:text-[#0035AD] text-white'} text-xs font-bold transition-all shadow-sm">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Add</span>
+              </button>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function filterCategory(categoryName) {
+      state.activeCategory = categoryName;
+
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        if (btn.textContent.trim().toLowerCase() === categoryName.toLowerCase() || (categoryName === 'All' && btn.textContent.includes('All'))) {
+          btn.classList.add('bg-[#0035AD]', 'text-white');
+          btn.classList.remove('bg-white', 'text-gray-700');
+        } else {
+          btn.classList.remove('bg-[#0035AD]', 'text-white');
+          btn.classList.add('bg-white', 'text-gray-700');
+        }
+      });
+
+      const notice = document.getElementById('filterNotice');
+      const noticeText = document.getElementById('filterNoticeText');
+      if (categoryName !== 'All') {
+        notice.classList.remove('hidden');
+        noticeText.textContent = `Showing Footwear in "${categoryName}" category (${state.products.filter(p => p.category === categoryName).length} items)`;
+      } else {
+        notice.classList.add('hidden');
+      }
+
+      renderStorefrontProducts();
+      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleSearch(query) {
+      state.searchQuery = query.trim();
+      const notice = document.getElementById('filterNotice');
+      const noticeText = document.getElementById('filterNoticeText');
+      
+      if (state.searchQuery) {
+        notice.classList.remove('hidden');
+        noticeText.textContent = `Search results for: "${state.searchQuery}"`;
+      } else if (state.activeCategory === 'All') {
+        notice.classList.add('hidden');
+      }
+      renderStorefrontProducts();
+    }
+
+    function resetFilter() {
+      state.activeCategory = 'All';
+      state.searchQuery = '';
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      document.getElementById('filterNotice').classList.add('hidden');
+      filterCategory('All');
+    }
+
+    /* ================= QUICK SIZE SELECTION MODAL ================= */
+    function promptSizeAndAddToCart(productId) {
+      const product = state.products.find(p => p.id === productId);
+      if (!product) return;
+
+      if (product.stock <= 0) {
+        showToast('Sorry, this footwear model is currently out of stock!');
+        return;
+      }
+
+      state.quickSelectPendingProduct = product;
+      state.quickSelectedSize = (product.sizes && product.sizes.length) ? product.sizes[0] : 8;
+
+      document.getElementById('quickModalImg').src = product.imageUrl;
+      document.getElementById('quickModalTitle').textContent = product.name;
+      document.getElementById('quickModalPrice').textContent = `₹${product.price.toLocaleString('en-IN')}`;
+
+      const sizesContainer = document.getElementById('quickModalSizes');
+      sizesContainer.innerHTML = (product.sizes || [6,7,8,9,10,11]).map((sz, idx) => `
+        <button type="button" onclick="selectQuickModalSize(${sz}, this)" 
+                class="size-pill-btn px-4 py-2 rounded-xl text-xs font-bold border transition-all ${idx === 0 ? 'bg-[#0035AD] text-white border-[#0035AD]' : 'bg-gray-50 text-gray-800 border-gray-200 hover:bg-gray-100'}">
+          UK ${sz}
+        </button>
+      `).join('');
+
+      document.getElementById('quickSelectModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function selectQuickModalSize(size, btnElement) {
+      state.quickSelectedSize = size;
+      document.querySelectorAll('.size-pill-btn').forEach(b => {
+        b.classList.remove('bg-[#0035AD]', 'text-white', 'border-[#0035AD]');
+        b.classList.add('bg-gray-50', 'text-gray-800', 'border-gray-200');
+      });
+      btnElement.classList.remove('bg-gray-50', 'text-gray-800', 'border-gray-200');
+      btnElement.classList.add('bg-[#0035AD]', 'text-white', 'border-[#0035AD]');
+    }
+
+    function closeQuickSelectModal() {
+      document.getElementById('quickSelectModal').classList.add('hidden');
+      state.quickSelectPendingProduct = null;
+    }
+
+    function confirmQuickAddToCart() {
+      if (!state.quickSelectPendingProduct) return;
+      addToCart(state.quickSelectPendingProduct, state.quickSelectedSize);
+      closeQuickSelectModal();
+      toggleCartDrawer(true);
+    }
+
+    /* ================= CART MANAGEMENT ================= */
+    function addToCart(product, size) {
+      const existing = state.cart.find(item => item.product.id === product.id && item.size === size);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        state.cart.push({
+          product: product,
+          size: size,
+          quantity: 1
+        });
+      }
+      renderCartDrawer();
+      updateCartBadge();
+      showToast(`Added ${product.name} (UK ${size}) to cart!`);
+    }
+
+    function updateCartItemQty(index, delta) {
+      if (!state.cart[index]) return;
+      state.cart[index].quantity += delta;
+      if (state.cart[index].quantity <= 0) {
+        state.cart.splice(index, 1);
+      }
+      renderCartDrawer();
+      updateCartBadge();
+    }
+
+    function removeCartItem(index) {
+      state.cart.splice(index, 1);
+      renderCartDrawer();
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const totalCount = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-badge-count');
+      if (badge) badge.textContent = totalCount;
+    }
+
+    function renderCartDrawer() {
+      const container = document.getElementById('cartItemsContainer');
+      const emptyState = document.getElementById('cartEmptyState');
+      const footer = document.getElementById('cartFooter');
+      const subHeader = document.getElementById('cartHeaderSub');
+
+      const totalItems = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (subHeader) subHeader.textContent = `${totalItems} pair${totalItems === 1 ? '' : 's'} selected`;
+
+      if (state.cart.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        footer.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      footer.classList.remove('hidden');
+
+      container.innerHTML = state.cart.map((item, idx) => `
+        <div class="flex items-center space-x-3 bg-white p-3 rounded-2xl border border-gray-100 shadow-xs">
+          <img src="${item.product.imageUrl}" alt="${item.product.name}" class="w-16 h-16 object-contain bg-gray-50 rounded-xl p-1 shrink-0">
+          
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-gray-900 truncate">${item.product.name}</h4>
+            <div class="flex items-center space-x-2 text-[10px] text-gray-500 mt-0.5">
+              <span class="bg-[#EEF4FF] text-[#0035AD] font-bold px-1.5 py-0.5 rounded">Size: UK ${item.size}</span>
+              <span class="font-bold text-gray-900">₹${item.product.price}</span>
+            </div>
+            
+            <div class="flex items-center space-x-2 mt-2">
+              <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-gray-50">
+                <button onclick="updateCartItemQty(${idx}, -1)" class="px-2 py-0.5 text-xs hover:bg-gray-200 font-bold">-</button>
+                <span class="px-2 text-xs font-bold text-gray-900">${item.quantity}</span>
+                <button onclick="updateCartItemQty(${idx}, 1)" class="px-2 py-0.5 text-xs hover:bg-gray-200 font-bold">+</button>
+              </div>
+              <button onclick="removeCartItem(${idx})" class="text-[10px] text-rose-500 hover:text-rose-700 underline font-semibold ml-auto">
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      calculateCartTotals();
+      lucide.createIcons();
+    }
+
+    function calculateCartTotals() {
+      const subtotal = state.cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+      let discount = 0;
+
+      if (state.activeCoupon) {
+        if (state.activeCoupon.type === 'percent') {
+          discount = Math.round((subtotal * state.activeCoupon.discount) / 100);
+        } else {
+          discount = state.activeCoupon.discount;
+        }
+      }
+
+      if (discount > subtotal) discount = subtotal;
+      const grandTotal = subtotal - discount;
+
+      document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      document.getElementById('cartDiscount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
+      document.getElementById('cartGrandTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+      const modalTotal = document.getElementById('modalCheckoutTotal');
+      if (modalTotal) modalTotal.textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+      return { subtotal, discount, grandTotal };
+    }
+
+    function toggleCartDrawer(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      if (open) {
+        backdrop.classList.remove('hidden');
+        drawer.classList.remove('translate-x-full');
+      } else {
+        backdrop.classList.add('hidden');
+        drawer.classList.add('translate-x-full');
+      }
+    }
+
+    function applyCouponCode() {
+      const codeInput = document.getElementById('couponInput').value.trim().toUpperCase();
+      const match = state.coupons.find(c => c.code.toUpperCase() === codeInput);
+
+      if (match) {
+        state.activeCoupon = match;
+        document.getElementById('couponAppliedBadge').classList.remove('hidden');
+        document.getElementById('couponAppliedText').textContent = `Code ${match.code} Applied (${match.label})`;
+        calculateCartTotals();
+        showToast(`Promo Code "${match.code}" activated!`);
+      } else {
+        showToast('Invalid or expired coupon code!');
+      }
+    }
+
+    function removeCoupon() {
+      state.activeCoupon = null;
+      document.getElementById('couponAppliedBadge').classList.add('hidden');
+      document.getElementById('couponInput').value = '';
+      calculateCartTotals();
+      showToast('Coupon removed');
+    }
+
+    /* ================= CHECKOUT / BOOKING MODAL ================= */
+    function openCheckoutModal(mode = 'pickup') {
+      if (state.cart.length === 0) {
+        showToast('Please add footwear pairs to your cart before proceeding!');
+        return;
+      }
+      setCheckoutMode(mode);
+      toggleCartDrawer(false);
+      calculateCartTotals();
+      document.getElementById('checkoutModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function setCheckoutMode(mode) {
+      state.checkoutMode = mode;
+      const pickupBtn = document.getElementById('modeBtnPickup');
+      const deliveryBtn = document.getElementById('modeBtnDelivery');
+      const addrField = document.getElementById('deliveryAddressField');
+      const pickupNote = document.getElementById('storePickupNote');
+      const badge = document.getElementById('checkoutModeBadge');
+      const submitLabel = document.getElementById('checkoutSubmitBtnLabel');
+
+      if (mode === 'pickup') {
+        pickupBtn.className = "py-2 text-xs font-bold rounded-lg transition-all bg-white text-[#0035AD] shadow-sm";
+        deliveryBtn.className = "py-2 text-xs font-bold rounded-lg transition-all text-gray-600 hover:text-black";
+        addrField.classList.add('hidden');
+        pickupNote.classList.remove('hidden');
+        badge.textContent = "Free Store Reservation (Pay at Mart)";
+        submitLabel.textContent = "Confirm In-Store Reservation (48h Hold)";
+      } else {
+        deliveryBtn.className = "py-2 text-xs font-bold rounded-lg transition-all bg-white text-[#0035AD] shadow-sm";
+        pickupBtn.className = "py-2 text-xs font-bold rounded-lg transition-all text-gray-600 hover:text-black";
+        addrField.classList.remove('hidden');
+        pickupNote.classList.add('hidden');
+        badge.textContent = "Direct Home Delivery Order";
+        submitLabel.textContent = "Place Online Order (Free Pan-India Delivery)";
+      }
+    }
+
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const payment = document.getElementById('custPaymentMethod').value;
+      const { grandTotal } = calculateCartTotals();
+
+      if (!name || !phone) {
+        showToast('Please enter your full name and contact number');
+        return;
+      }
+
+      const generatedId = `KSM-${Math.floor(1000 + Math.random() * 9000)}`;
+      const modelsSummary = state.cart.map(i => `${i.product.name} (UK ${i.size}) x${i.quantity}`).join(', ');
+
+      const newOrder = {
+        id: generatedId,
+        customerName: name,
+        phone: phone,
+        email: email || 'walkin@kalyanmart.in',
+        modelName: modelsSummary,
+        size: state.cart[0]?.size || 8,
+        quantity: state.cart.reduce((s, i) => s + i.quantity, 0),
+        totalAmount: grandTotal,
+        type: state.checkoutMode === 'pickup' ? 'Store Pickup' : 'Home Delivery',
+        status: state.checkoutMode === 'pickup' ? 'Confirmed' : 'Pending',
+        date: new Date().toLocaleDateString('en-GB') + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        payment: payment
+      };
+
+      state.cart.forEach(cartItem => {
+        const prod = state.products.find(p => p.id === cartItem.product.id);
+        if (prod) {
+          prod.stock = Math.max(0, prod.stock - cartItem.quantity);
+        }
+      });
+
+      state.orders.unshift(newOrder);
+
+      // Save state to LocalStorage
+      saveStorage('orders', state.orders);
+      saveStorage('products', state.products);
+
+      state.cart = [];
+      renderCartDrawer();
+      updateCartBadge();
+      closeCheckoutModal();
+
+      showToast(`🎉 Order Placed! Ref ID: ${generatedId}`);
+
+      setTimeout(() => {
+        openBookingLookupModal(generatedId);
+      }, 600);
+    }
+
+    function openStoreReserveInfo() {
+      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+      showToast('Select any shoe model and choose "Reserve at Store" to hold your size for 48 hours!');
+    }
+
+    /* ================= BOOKING LOOKUP MODAL ================= */
+    function openBookingLookupModal(autoQuery = '') {
+      const modal = document.getElementById('bookingLookupModal');
+      const input = document.getElementById('lookupQuery');
+      modal.classList.remove('hidden');
+      if (autoQuery) {
+        input.value = autoQuery;
+        performBookingLookup();
+      }
+      lucide.createIcons();
+    }
+
+    function closeBookingLookupModal() {
+      document.getElementById('bookingLookupModal').classList.add('hidden');
+    }
+
+    function performBookingLookup() {
+      const query = document.getElementById('lookupQuery').value.trim().toLowerCase();
+      const container = document.getElementById('lookupResults');
+
+      if (!query) {
+        container.innerHTML = '<p class="text-center text-xs text-rose-500 py-3 font-semibold">Please enter an Order ID or Phone Number</p>';
+        return;
+      }
+
+      const results = state.orders.filter(o => 
+        o.id.toLowerCase().includes(query) || 
+        o.phone.toLowerCase().includes(query) ||
+        o.customerName.toLowerCase().includes(query)
+      );
+
+      if (results.length === 0) {
+        container.innerHTML = '<p class="text-center text-xs text-gray-400 py-4 font-medium">No booking found matching your search. Please check your reference ID or visit our counter.</p>';
+        return;
+      }
+
+      container.innerHTML = results.map(ord => `
+        <div class="bg-gray-50 p-3.5 rounded-2xl border border-gray-200 text-left space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black font-mono text-[#0035AD]">${ord.id}</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${getStatusBadgeClass(ord.status)}">${ord.status}</span>
+          </div>
+          <p class="text-xs font-bold text-gray-800">${ord.modelName}</p>
+          <div class="flex items-center justify-between text-[11px] text-gray-500 pt-1 border-t border-gray-200">
+            <span>${ord.type} • ${ord.date}</span>
+            <span class="font-extrabold text-[#0035AD]">₹${ord.totalAmount.toLocaleString('en-IN')}</span>
+          </div>
+          <div class="text-[10px] text-gray-500">
+            Customer: <strong class="text-gray-800">${ord.customerName}</strong> (${ord.phone})
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ========================================================================= */
+    /* ======================== ADMIN DASHBOARD LOGIC ========================== */
+    /* ========================================================================= */
+    function refreshAdminStats() {
+      const totalSales = state.orders.reduce((sum, o) => sum + (o.status !== 'Cancelled' ? o.totalAmount : 0), 0);
+      const totalOrdersCount = state.orders.length;
+      const totalProductsCount = state.products.length;
+      const lowStockCount = state.products.filter(p => p.stock <= 5).length;
+
+      document.getElementById('statTotalSales').textContent = `₹${totalSales.toLocaleString('en-IN')}`;
+      document.getElementById('statTotalOrders').textContent = totalOrdersCount;
+      document.getElementById('statTotalProducts').textContent = totalProductsCount;
+      document.getElementById('statLowStock').textContent = `${lowStockCount} Items`;
+
+      document.getElementById('admin-product-count-badge').textContent = totalProductsCount;
+      document.getElementById('admin-order-count-badge').textContent = totalOrdersCount;
+      document.getElementById('dashboardCurrentBannerText').textContent = state.bannerText;
+    }
+
+    function renderDashboardRecentOrders() {
+      const tbody = document.getElementById('dashboardRecentOrdersTable');
+      if (!tbody) return;
+
+      const recents = state.orders.slice(0, 5);
+      tbody.innerHTML = recents.map(order => `
+        <tr class="hover:bg-gray-50/80 transition-colors">
+          <td class="py-3 px-3 font-mono font-bold text-[#0035AD]">${order.id}</td>
+          <td class="py-3 px-3 font-medium text-gray-800">${order.customerName}<br><span class="text-[10px] text-gray-400 font-normal">${order.phone}</span></td>
+          <td class="py-3 px-3 font-semibold text-gray-900 max-w-xs truncate">${order.modelName}</td>
+          <td class="py-3 px-3">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${order.type === 'Store Pickup' ? 'bg-[#FEF9C3] text-[#854D0E]' : 'bg-[#EEF4FF] text-[#0035AD]'}">
+              ${order.type}
+            </span>
+          </td>
+          <td class="py-3 px-3">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${getStatusBadgeClass(order.status)}">
+              ${order.status}
+            </span>
+          </td>
+          <td class="py-3 px-3 text-right font-extrabold text-[#0035AD] font-mono">₹${order.totalAmount.toLocaleString('en-IN')}</td>
+        </tr>
+      `).join('');
+    }
+
+    /* ================= ADMIN PRODUCT MANAGEMENT (CRUD) ================= */
+    function renderAdminProductsTable() {
+      const tbody = document.getElementById('adminProductsTableBody');
+      const search = (document.getElementById('adminSearchProductInput')?.value || '').toLowerCase();
+      const cat = document.getElementById('adminCategoryFilter')?.value || 'All';
+      if (!tbody) return;
+
+      const filtered = state.products.filter(p => {
+        const matchesCat = (cat === 'All') || (p.category === cat);
+        const matchesSearch = !search || 
+          p.name.toLowerCase().includes(search) || 
+          p.sku.toLowerCase().includes(search) || 
+          p.category.toLowerCase().includes(search);
+        return matchesCat && matchesSearch;
+      });
+
+      document.getElementById('adminTableFooterCount').textContent = `Showing ${filtered.length} of ${state.products.length} products`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-gray-400">No footwear matches search criteria.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(product => {
+        const isLow = product.stock <= 5 && product.stock > 0;
+        const isOut = product.stock <= 0;
+
+        return `
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-3 px-4">
+              <div class="flex items-center space-x-3">
+                <img src="${product.imageUrl}" alt="${product.name}" onerror="this.src='https://placehold.co/100x100?text=Shoe'" class="w-10 h-10 object-contain rounded-lg bg-gray-50 p-1 shrink-0 border border-gray-100">
+                <div>
+                  <h4 class="font-extrabold text-gray-900 leading-snug">${product.name}</h4>
+                  <span class="text-[10px] font-mono text-gray-400 uppercase tracking-wider">${product.sku}</span>
+                </div>
+              </div>
+            </td>
+
+            <td class="py-3 px-4 font-semibold text-gray-700">${product.category}</td>
+
+            <td class="py-3 px-4">
+              <span class="font-bold text-[#0035AD]">₹${product.price}</span>
+              ${product.originalPrice ? `<span class="text-[10px] text-gray-400 line-through ml-1">₹${product.originalPrice}</span>` : ''}
+            </td>
+
+            <td class="py-3 px-4 font-mono text-[11px] text-gray-600">
+              ${(product.sizes || []).join(', ')}
+            </td>
+
+            <td class="py-3 px-4 font-bold ${isOut ? 'text-rose-600' : isLow ? 'text-amber-600' : 'text-gray-900'}">
+              ${product.stock} pairs
+            </td>
+
+            <td class="py-3 px-4">
+              ${isOut ? `
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700">Sold Out</span>
+              ` : isLow ? `
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700">Low Stock</span>
+              ` : `
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700">In Stock</span>
+              `}
+            </td>
+
+            <td class="py-3 px-4">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${product.badge === 'Best Seller' ? 'badge-yellow' : product.badge === 'Popular' ? 'badge-blue' : 'bg-gray-100 text-gray-600'}">
+                ${product.badge || 'None'}
+              </span>
+            </td>
+
+            <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+              <button onclick="openEditProductModal('${product.id}')" title="Edit Product" class="p-1.5 rounded-lg text-gray-600 hover:text-[#0035AD] hover:bg-gray-100 transition-colors">
+                <i data-lucide="edit-3" class="w-4 h-4"></i>
+              </button>
+              <button onclick="deleteProduct('${product.id}')" title="Delete Product" class="p-1.5 rounded-lg text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition-colors">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function openAddProductModal() {
+      document.getElementById('productCrudModalTitle').textContent = 'Add New Footwear Model';
+      document.getElementById('crudSubmitLabel').textContent = 'Add Product to Catalog';
+      document.getElementById('crudProductId').value = '';
+      
+      document.getElementById('crudName').value = '';
+      document.getElementById('crudSku').value = `KSM-${Math.floor(100 + Math.random() * 900)}`;
+      document.getElementById('crudCategory').value = 'Sneakers';
+      document.getElementById('crudPrice').value = '2199';
+      document.getElementById('crudOriginalPrice').value = '2999';
+      document.getElementById('crudStock').value = '20';
+      document.getElementById('crudBadge').value = 'Best Seller';
+      document.getElementById('crudImageUrl').value = 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80';
+      updateCrudImgPreview('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80');
+
+      document.getElementById('productCrudModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function openEditProductModal(productId) {
+      const product = state.products.find(p => p.id === productId);
+      if (!product) return;
+
+      document.getElementById('productCrudModalTitle').textContent = `Edit Model: ${product.name}`;
+      document.getElementById('crudSubmitLabel').textContent = 'Update Product Details';
+      document.getElementById('crudProductId').value = product.id;
+
+      document.getElementById('crudName').value = product.name;
+      document.getElementById('crudSku').value = product.sku;
+      document.getElementById('crudCategory').value = product.category;
+      document.getElementById('crudPrice').value = product.price;
+      document.getElementById('crudOriginalPrice').value = product.originalPrice || '';
+      document.getElementById('crudStock').value = product.stock;
+      document.getElementById('crudBadge').value = product.badge || 'None';
+      document.getElementById('crudImageUrl').value = product.imageUrl;
+      document.getElementById('crudFeatured').checked = product.featured !== false;
+
+      const checkboxes = document.querySelectorAll('#crudSizesContainer input[type="checkbox"]');
+      checkboxes.forEach(cb => {
+        cb.checked = (product.sizes || []).includes(parseInt(cb.value));
+      });
+
+      updateCrudImgPreview(product.imageUrl);
+      document.getElementById('productCrudModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeProductCrudModal() {
+      stopCameraStream();
+      document.getElementById('productCrudModal').classList.add('hidden');
+    }
+
+    /* ================= CAMERA CAPTURE LOGIC ================= */
+    async function startCameraStream() {
+      const container = document.getElementById('cameraViewContainer');
+      const video = document.getElementById('cameraVideo');
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        showToast('Camera access is not supported by your browser or environment.');
+        return;
+      }
+
+      try {
+        stopCameraStream(); // stop any active stream first
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
+          audio: false
+        });
+        state.cameraMediaStream = stream;
+        video.srcObject = stream;
+        container.classList.remove('hidden');
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Camera access error:', err);
+        showToast('Could not access camera. Please check browser permissions.');
+      }
+    }
+
+    function captureCameraPhoto() {
+      const video = document.getElementById('cameraVideo');
+      const canvas = document.getElementById('cameraCanvas');
+      if (!video || !state.cameraMediaStream) return;
+
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const capturedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+      document.getElementById('crudImageUrl').value = capturedDataUrl;
+      updateCrudImgPreview(capturedDataUrl);
+
+      stopCameraStream();
+      showToast('Photo captured successfully from camera!');
+    }
+
+    function stopCameraStream() {
+      if (state.cameraMediaStream) {
+        state.cameraMediaStream.getTracks().forEach(track => track.stop());
+        state.cameraMediaStream = null;
+      }
+      const container = document.getElementById('cameraViewContainer');
+      if (container) container.classList.add('hidden');
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const result = e.target.result;
+        document.getElementById('crudImageUrl').value = result;
+        updateCrudImgPreview(result);
+        showToast('Image uploaded from device!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearProductImage() {
+      document.getElementById('crudImageUrl').value = '';
+      updateCrudImgPreview('');
+    }
+
+    function updateCrudImgPreview(url) {
+      const preview = document.getElementById('crudImgPreview');
+      const placeholder = document.getElementById('crudImgPlaceholder');
+      const removeBtn = document.getElementById('removeImgBtn');
+
+      if (url && url.length > 5) {
+        preview.src = url;
+        preview.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        if (removeBtn) removeBtn.classList.remove('hidden');
+      } else {
+        preview.classList.add('hidden');
+        placeholder.classList.remove('hidden');
+        if (removeBtn) removeBtn.classList.add('hidden');
+      }
+    }
+
+    function setPresetShoeImage() {
+      const presets = [
+        'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80'
+      ];
+      const randomPreset = presets[Math.floor(Math.random() * presets.length)];
+      document.getElementById('crudImageUrl').value = randomPreset;
+      updateCrudImgPreview(randomPreset);
+    }
+
+    function handleSaveProduct(e) {
+      e.preventDefault();
+
+      const id = document.getElementById('crudProductId').value;
+      const name = document.getElementById('crudName').value.trim();
+      const sku = document.getElementById('crudSku').value.trim();
+      const category = document.getElementById('crudCategory').value;
+      const price = parseFloat(document.getElementById('crudPrice').value);
+      const originalPrice = parseFloat(document.getElementById('crudOriginalPrice').value) || 0;
+      const stock = parseInt(document.getElementById('crudStock').value) || 0;
+      const badge = document.getElementById('crudBadge').value;
+      const imageUrl = document.getElementById('crudImageUrl').value.trim();
+      const featured = document.getElementById('crudFeatured').checked;
+
+      const checkedSizes = [];
+      document.querySelectorAll('#crudSizesContainer input[type="checkbox"]:checked').forEach(cb => {
+        checkedSizes.push(parseInt(cb.value));
+      });
+
+      if (!name || isNaN(price)) {
+        showToast('Please verify name and price fields.');
+        return;
+      }
+
+      if (id) {
+        const index = state.products.findIndex(p => p.id === id);
+        if (index !== -1) {
+          state.products[index] = {
+            ...state.products[index],
+            name, sku, category, price, originalPrice, stock, badge,
+            imageUrl: imageUrl || state.products[index].imageUrl,
+            sizes: checkedSizes.length ? checkedSizes : [7,8,9,10],
+            featured
+          };
+          showToast(`Updated "${name}" successfully!`);
+        }
+      } else {
+        const newProduct = {
+          id: `ksm-${Date.now()}`,
+          sku,
+          name,
+          category,
+          price,
+          originalPrice,
+          rating: 5.0,
+          reviewsCount: 1,
+          badge,
+          stock,
+          sizes: checkedSizes.length ? checkedSizes : [7, 8, 9, 10],
+          imageUrl: imageUrl || 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80',
+          featured
+        };
+        state.products.unshift(newProduct);
+        showToast(`Created & published "${name}" to store!`);
+      }
+
+      saveStorage('products', state.products);
+      closeProductCrudModal();
+      renderAdminProductsTable();
+      refreshAdminStats();
+      renderStorefrontProducts();
+    }
+
+    function deleteProduct(productId) {
+      const product = state.products.find(p => p.id === productId);
+      const confirmDelete = window.confirm(`Are you sure you want to remove "${product ? product.name : 'this item'}" from the catalog?`);
+      if (confirmDelete) {
+        state.products = state.products.filter(p => p.id !== productId);
+        saveStorage('products', state.products);
+        showToast('Footwear removed from inventory.');
+        renderAdminProductsTable();
+        refreshAdminStats();
+        renderStorefrontProducts();
+      }
+    }
+
+    /* ================= ADMIN ORDERS & BOOKINGS TABLE ================= */
+    function renderAdminOrdersTable() {
+      const tbody = document.getElementById('adminOrdersTableBody');
+      const filterType = document.getElementById('adminOrderFilterType')?.value || 'All';
+      if (!tbody) return;
+
+      const filtered = state.orders.filter(o => {
+        if (filterType === 'All') return true;
+        return o.type === filterType;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-gray-400">No orders found matching this filter.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(order => `
+        <tr class="hover:bg-gray-50/80 transition-colors">
+          <td class="py-3.5 px-4 font-mono font-bold text-[#0035AD]">${order.id}</td>
+          
+          <td class="py-3.5 px-4">
+            <div class="font-bold text-gray-900">${order.customerName}</div>
+            <div class="text-[11px] text-gray-500 font-normal">${order.phone} • ${order.email}</div>
+          </td>
+
+          <td class="py-3.5 px-4">
+            <div class="font-semibold text-gray-900 line-clamp-1">${order.modelName}</div>
+            <div class="text-[10px] text-gray-500">Size UK ${order.size} • Qty: ${order.quantity}</div>
+          </td>
+
+          <td class="py-3.5 px-4">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${order.type === 'Store Pickup' ? 'bg-[#FEF9C3] text-[#854D0E]' : 'bg-[#EEF4FF] text-[#0035AD]'}">
+              ${order.type}
+            </span>
+          </td>
+
+          <td class="py-3.5 px-4 font-black text-[#0035AD] font-mono">
+            ₹${order.totalAmount.toLocaleString('en-IN')}
+            <span class="block text-[9px] text-gray-400 font-normal font-sans">${order.payment}</span>
+          </td>
+
+          <td class="py-3.5 px-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold ${getStatusBadgeClass(order.status)}">
+              ${order.status}
+            </span>
+          </td>
+
+          <td class="py-3.5 px-4 text-right">
+            <select onchange="updateOrderStatus('${order.id}', this.value)" class="text-xs bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 font-semibold focus:outline-none">
+              <option value="Pending" ${order.status === 'Pending' ? 'selected' : ''}>Pending</option>
+              <option value="Confirmed" ${order.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="Ready for Pickup" ${order.status === 'Ready for Pickup' ? 'selected' : ''}>Ready for Pickup</option>
+              <option value="Shipped" ${order.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+              <option value="Completed" ${order.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Cancelled" ${order.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function updateOrderStatus(orderId, newStatus) {
+      const order = state.orders.find(o => o.id === orderId);
+      if (order) {
+        order.status = newStatus;
+        saveStorage('orders', state.orders);
+        showToast(`Order ${orderId} marked as "${newStatus}"`);
+        refreshAdminStats();
+      }
+    }
+
+    function getStatusBadgeClass(status) {
+      switch(status) {
+        case 'Confirmed': return 'bg-emerald-50 text-emerald-800 border border-emerald-200';
+        case 'Ready for Pickup': return 'bg-[#FEF9C3] text-[#854D0E] border border-[#F4E11B]';
+        case 'Shipped': return 'bg-blue-50 text-blue-800 border border-blue-200';
+        case 'Completed': return 'bg-[#0035AD] text-white';
+        case 'Cancelled': return 'bg-rose-50 text-rose-800 border border-rose-200';
+        default: return 'bg-amber-50 text-amber-800 border border-amber-200';
+      }
+    }
+
+    /* ================= ADMIN OFFERS & PROMOS ================= */
+    function saveAnnouncementBanner() {
+      const text = document.getElementById('adminBannerTextInput').value.trim();
+      const visible = document.getElementById('adminBannerToggleCheckbox').checked;
+
+      state.bannerText = text;
+      state.bannerVisible = visible;
+      saveStorage('bannerText', text);
+      saveStorage('bannerVisible', visible);
+
+      const banner = document.getElementById('promo-banner');
+      const bannerTextEl = document.getElementById('promo-text');
+      if (visible) {
+        banner.classList.remove('hidden');
+        bannerTextEl.textContent = text;
+      } else {
+        banner.classList.add('hidden');
+      }
+
+      showToast('Storefront announcement banner updated live!');
+      refreshAdminStats();
+    }
+
+    function renderAdminCouponsList() {
+      const list = document.getElementById('adminCouponsList');
+      if (!list) return;
+
+      list.innerHTML = state.coupons.map((c, idx) => `
+        <div class="py-3 flex items-center justify-between">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="font-mono font-black text-xs bg-[#EEF4FF] text-[#0035AD] px-2 py-0.5 rounded border border-blue-200">${c.code}</span>
+              <span class="text-xs font-bold text-gray-800">${c.label}</span>
+            </div>
+            <p class="text-[11px] text-gray-500 mt-0.5">Applies at customer cart checkout</p>
+          </div>
+          <button onclick="deleteCoupon(${idx})" class="p-1.5 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function openAddCouponModal() {
+      const code = prompt('Enter new Promo Voucher Code (e.g. FESTIVE25):');
+      if (!code) return;
+      const discount = parseInt(prompt('Enter discount percentage (e.g. 25 for 25%):', '10'));
+      if (isNaN(discount)) return;
+
+      state.coupons.push({
+        code: code.toUpperCase().trim(),
+        discount: discount,
+        type: 'percent',
+        label: `Flat ${discount}% Off Discount`
+      });
+
+      saveStorage('coupons', state.coupons);
+      renderAdminCouponsList();
+      showToast(`Coupon ${code.toUpperCase()} registered!`);
+    }
+
+    function deleteCoupon(index) {
+      state.coupons.splice(index, 1);
+      saveStorage('coupons', state.coupons);
+      renderAdminCouponsList();
+      showToast('Coupon code deleted.');
+    }
+
+    /* ================= ADMIN CUSTOMER CRM ================= */
+    function renderAdminCustomersTable() {
+      const tbody = document.getElementById('adminCustomersTableBody');
+      if (!tbody) return;
+
+      const customerMap = {};
+      state.orders.forEach(o => {
+        if (!customerMap[o.phone]) {
+          customerMap[o.phone] = {
+            name: o.customerName,
+            phone: o.phone,
+            types: new Set([o.type]),
+            ordersCount: 0,
+            totalSpent: 0
+          };
+        }
+        customerMap[o.phone].ordersCount += 1;
+        customerMap[o.phone].totalSpent += o.totalAmount;
+        customerMap[o.phone].types.add(o.type);
+      });
+
+      const list = Object.values(customerMap);
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-gray-400">No customer records found yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(c => `
+        <tr class="hover:bg-gray-50/80 transition-colors">
+          <td class="py-3 px-3 font-bold text-gray-900">${c.name}</td>
+          <td class="py-3 px-3 font-mono text-gray-600">${c.phone}</td>
+          <td class="py-3 px-3">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-700">
+              ${Array.from(c.types).join(', ')}
+            </span>
+          </td>
+          <td class="py-3 px-3 font-bold text-gray-900">${c.ordersCount} booking(s)</td>
+          <td class="py-3 px-3 font-black text-[#0035AD] font-mono">₹${c.totalSpent.toLocaleString('en-IN')}</td>
+          <td class="py-3 px-3">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#FEF9C3] text-[#854D0E]">
+              Active Mart Member
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function resetDefaultCatalog() {
+      if (confirm('Reset catalog products and orders to original demo setup?')) {
+        state.products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+        state.orders = JSON.parse(JSON.stringify(DEFAULT_ORDERS));
+        state.cart = [];
+        saveStorage('products', state.products);
+        saveStorage('orders', state.orders);
+        renderStorefrontProducts();
+        renderAdminProductsTable();
+        refreshAdminStats();
+        showToast('Default footwear catalog restored.');
+      }
+    }
+
+    /* ================= UTILITIES & TOASTS ================= */
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('hidden');
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = "bg-[#00257A] text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-2 border border-[#0035AD] pointer-events-auto transform translate-y-2 opacity-0 transition-all duration-300";
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-[#F4E11B]"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
